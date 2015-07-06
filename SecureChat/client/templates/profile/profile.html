@@ -1,0 +1,38 @@
+<template name="profile">
+    {{#if isAndroid}}
+    
+        {{#contentFor "headerTitle"}}
+            <h1 class="title">Chats</h1>
+            <button class="button button-clear"><a href="/profile"><i class="icon ion-compose calm"></i></a></button>
+        {{/contentFor}}
+    
+        {{#ionBody}}
+    
+            {{#ionNavView}}
+                {{> profileTab}}
+            {{/ionNavView}}
+    
+        {{/ionBody}}
+
+    {{else}}
+    
+        {{#contentFor "headerTitle"}}
+            <button class="button button-clear">
+            <span class="back-text">
+                Edit
+            </span>
+            </button>
+            <h1 class="title">Chats</h1>
+            <button class="button button-clear"><a href="/profile"><i class="icon ion-compose calm"></i></a></button>
+        {{/contentFor}}
+    
+        {{#ionBody}}
+    
+            {{#ionNavView}}
+                {{> profileTab}}
+            {{/ionNavView}}
+    
+        {{/ionBody}}
+        
+    {{/if}}
+</template>
