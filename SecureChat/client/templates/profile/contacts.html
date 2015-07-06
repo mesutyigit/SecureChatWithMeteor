@@ -8,7 +8,16 @@
     
         {{#ionNavView}}
             {{#ionContent}}
-                SAAAAAA
+                {{#ionList}}
+                    {{#each lists}}
+                        {{#ionItem avatar=true}}
+                        
+                            <img src="/5.jpg">
+                            <a><h3>{{name}}</h3></a>
+                            
+                        {{/ionItem}}
+                    {{/each}}
+                {{/ionList}}
             {{/ionContent}}
             
             {{> profileTab}}
