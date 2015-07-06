@@ -1,0 +1,16 @@
+<template name="profileTab">
+    {{#if isAndroid}}
+        {{#ionTabs style="android" class="tabs-background-positive tabs-color-light"}}
+            {{> ionTab title="Contacts" path="contacts" icon="android-people calm"}}
+            {{> ionTab title="Messages" path="messages" icon="android-chat"}}
+            {{> ionTab title="Settings" path="settings" icon="gear-b"}}
+        {{/ionTabs}}
+    {{else}}
+        {{#ionTabs style="ios"}}
+            {{> ionTab title="Contacts" path="contacts" iconOff="ios-people-outline" iconOn="ios-people calm"}}
+            {{> ionTab title="Messages" path="messages" iconOff="ios-chatbubble-outline" iconOn="ios-chatbubble calm"}}
+            {{> ionTab title="Settings" path="settings" iconOff="ios-gear-outline" iconOn="ios-gear calm"}}
+            
+        {{/ionTabs}}
+    {{/if}}
+</template>

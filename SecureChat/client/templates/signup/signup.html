@@ -1,0 +1,41 @@
+<template name="signup">
+    <div class="bar bar-header bar-calm">
+        <h1 class="title">Sign Up</h1>
+    </div>
+    
+    {{#ionView}}
+    {{#ionContent}}
+    <div class="list">
+        <label class="item item-input item-stacked-label">
+            <i class="icon ion-person-stalker"></i>&nbsp;
+            <span class="input-label">First Name</span>
+            <input type="text" id="name" placeholder="John">
+                </label>
+        <label class="item item-input item-stacked-label">
+            <i class="icon ion-person-stalker"></i>&nbsp;
+            <span class="input-label">Last Name</span>
+            <input type="text" id="surName" placeholder="Suhr">
+                </label>
+        <label class="item item-input item-stacked-label">
+            <i class="icon ion-at"></i>&nbsp;
+            <span class="input-label">Email</span>
+            <input type="text" id="email" placeholder="deneme@fililabs.com">
+        </label>
+        <label class="item item-input item-stacked-label">
+            <i class="icon ion-key"></i>
+            <span class="input-label">Password</span>
+            <input type="password" id="password" placeholder="********">
+        </label>
+        <label class="item item-input item-stacked-label">
+            <i class="icon ion-key"></i>
+            <span class="input-label">R-Password</span>
+            <input type="password" id="rPassword" placeholder="********">
+        </label>
+    </div>
+    
+    <button class="button button-calm" style="float:right;" id="sign">
+        Sign Up!&nbsp;&nbsp;<i class="icon ion-arrow-right-a"></i>
+    </button>
+    {{/ionContent}}
+    {{/ionView}}
+</template>
