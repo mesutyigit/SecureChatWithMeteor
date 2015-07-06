@@ -1,12 +1,18 @@
 <template name ="contacts">
-    {{#ionView}}
-    {{> profileHeader}}
-    
-    {{#ionContent class="padding"}}
-        <h1>BURDA KISILER OLACAK</h1>
-    {{/ionContent}}
-        
-        {{> profileTab}}
-    {{/ionView}}
+    {{#contentFor "headerTitle"}}
+    <h1 class="title">Contacts</h1>
+    <button class="button button-clear"><a href="/profile"><i class="icon ion-person-add dark"></i></a></button>
+    {{/contentFor}}
 
+    {{#ionBody}}
+    
+        {{#ionNavView}}
+            {{#ionContent}}
+                SAAAAAA
+            {{/ionContent}}
+            
+            {{> profileTab}}
+        {{/ionNavView}}
+
+    {{/ionBody}}
 </template>

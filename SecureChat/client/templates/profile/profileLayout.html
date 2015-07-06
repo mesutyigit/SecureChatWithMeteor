@@ -1,15 +1,8 @@
 <template name="profileLayout">
-    <div class="bar bar-header bar-stable">
-        <button class="button button-clear button-entering button-active">
-            <span class="back-text">
-                Edit
-            </span>
-        </button>
-        <h1 class="title">Chat</h1>
-        <button class="button button-clear "><a href="/profile"><i class="icon ion-compose calm"></i></a></button>
-    </div>
-    
     {{#ionBody}}
+    
+    {{> ionNavBar class="bar-stable"}}
+   
     {{#ionView}}
         {{> yield}}
     {{/ionView}}

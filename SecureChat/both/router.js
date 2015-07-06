@@ -9,8 +9,20 @@ Router.route('/signup', {
              name : 'signUp'
 });
 
+Router.route('/contacts', {
+             layoutTemplate : 'profileLayout',
+             template : 'contacts',
+             name : 'contacts'
+});
+
 Router.route('/profile', {
              layoutTemplate : 'profileLayout',
              template : 'profile',
-             name : 'profile'
+             name : 'messages'
+});
+
+Router.route('/settings', {
+             layoutTemplate : 'profileLayout',
+             template : 'settings',
+             name : 'settings'
 });

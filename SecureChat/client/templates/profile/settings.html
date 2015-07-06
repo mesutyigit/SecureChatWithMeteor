@@ -1,13 +1,19 @@
 <template name="settings">
-    {{#ionView}}
-    {{> profileHeader}}
+    {{#contentFor "headerTitle"}}
+        <h1 class="title">Settings</h1>
+        <button class="button button-clear">
+            <span class="back-text">
+                Edit
+            </span>
+        </button>
+    {{/contentFor}}
     
-    {{#ionContent class="padding"}}
-    <h1>BURDA AYARLAR OLACAK</h1>
-    {{/ionContent}}
+    {{#ionBody}}
     
+    {{#ionNavView}}
     {{> profileTab}}
-    {{/ionView}}
+    {{/ionNavView}}
     
+    {{/ionBody}}
 
 </template>
