@@ -1,7 +1,7 @@
 <template name ="contacts">
     {{#contentFor "headerTitle"}}
     <h1 class="title">Contacts</h1>
-    <button class="button button-clear"><a href="/profile"><i class="icon ion-person-add dark"></i></a></button>
+    <button class="button button-clear" data-ion-modal="newPerson"><i class="icon ion-person-add dark"></i></button>
     {{/contentFor}}
 
     {{#ionBody}}
@@ -13,7 +13,7 @@
                         {{#ionItem avatar=true}}
                         
                             <img src="/5.jpg">
-                            <a><h3>{{name}}</h3></a>
+                            <a onclick="alert('deneme')"><h3>{{name}}</h3></a>
                             
                         {{/ionItem}}
                     {{/each}}
