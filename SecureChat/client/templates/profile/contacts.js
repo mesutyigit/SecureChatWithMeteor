@@ -1,6 +1,7 @@
 if(Meteor.isCordova){
     List = new Meteor.Collection(null);
     
+<<<<<<< Updated upstream
     Meteor.startup(function() {
         
         var options = new ContactFindOptions();
@@ -22,7 +23,37 @@ if(Meteor.isCordova){
             }
             function onError(contacts){
                 alert("Cannot Access Contacts.");
+=======
+    Meteor.startup(function(){
+       // this.autorun(function(){
+            
+             navigator.contacts.find(["name","phoneNumbers","photos"], onSuccess);
+            function onSuccess(contacts){
+                for(var i = 0; i < contacts.length; i++)
+                {
+                   var id= List.insert({
+                        name : contacts[i].name.formatted,
+                        hasPhoto:false,
+                        photoUrl:""
+                        
+                    });
+                    if(contacts[i].photos && contacts[i].photos.length) {
+			//s+= "<p><img src='"+contact.photos[0].value+"'></p>";
+                    List.update({_id:id},{$set:{hasPhoto:true,photoUrl:contacts[i].photos[0].value}} );
+                    alert(contacts[i].photos[0].value);
+		         }
+                   // alert(contacts[i].photos.length);
+                    //for (var index = 0; index < contacts[i].photos.lenght; index++) {
+                         
+                        
+                    //}
+                }
+                alert("list tamamlandı");
+                    
+>>>>>>> Stashed changes
             }
+       // });
+       
     });
     
     Template.contacts.helpers({
@@ -31,3 +62,4 @@ if(Meteor.isCordova){
         }
     })
 }
+

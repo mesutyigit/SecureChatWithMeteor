@@ -32,6 +32,24 @@ Template.newPerson.events({
             document.getElementById("done").removeAttribute("disabled");
                           
                           
+<<<<<<< Updated upstream
+=======
+                          
+    },
+    
+    "click #alert":function(){
+        
+        function alertDismissed() {
+    // do something
+    }
+
+navigator.notification.alert(
+    'You are the winner!',  // message
+    alertDismissed,         // callback
+    'Game Over',            // title
+    'Done'                  // buttonName
+);
+>>>>>>> Stashed changes
     }
 });
 

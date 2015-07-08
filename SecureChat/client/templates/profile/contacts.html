@@ -11,11 +11,20 @@
                 {{#ionList}}
                     {{#each lists}}
                         {{#ionItem avatar=true}}
-                        
+                           {{#if hasPhoto}}
+                           <img src="file:///{{photoUrl}}" />
+                           {{else}}
                             <img src="/5.jpg">
+<<<<<<< Updated upstream
                                 {{#linkTo route='message.Screen'}}
                                 <button class="button button-clear"><h3>{{name}}/ {{surName}} -- {{number}}</h3></button>
                                 {{/linkTo}}
+=======
+                            {{/if}}
+                            <a onclick="alert('deneme')"><h3>{{name}}</h3></a>
+                            * {{hasPhoto}}
+                            * {{photoUrl}}
+>>>>>>> Stashed changes
                         {{/ionItem}}
                     {{/each}}
                 {{/ionList}}
