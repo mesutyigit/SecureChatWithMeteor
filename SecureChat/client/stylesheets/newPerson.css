@@ -11,7 +11,7 @@
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
-    border:1px solid black;
+    border:1px solid #11c1f3;
 }
 .circle-text div {
     float:left;

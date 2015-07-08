@@ -13,8 +13,9 @@
                         {{#ionItem avatar=true}}
                         
                             <img src="/5.jpg">
-                            <a onclick="alert('deneme')"><h3>{{name}}</h3></a>
-                            
+                                {{#linkTo route='message.Screen'}}
+                                <button class="button button-clear"><h3>{{name}}/ {{surName}} -- {{number}}</h3></button>
+                                {{/linkTo}}
                         {{/ionItem}}
                     {{/each}}
                 {{/ionList}}

@@ -26,3 +26,9 @@ Router.route('/settings', {
              template : 'settings',
              name : 'settings'
 });
+
+Router.route('/profile/:_id' ,{
+             layoutTemplate : 'messageScreenLayout',
+             template : 'messageScreen',
+             name : 'message.Screen'
+});

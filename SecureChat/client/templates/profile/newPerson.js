@@ -1,6 +1,15 @@
 var name;
 var surname;
-var phoneNumnber;
+var phoneNumber;
+
+control = function(){
+    if(!isEmpty(name) && !isEmpty(surname) && !isEmpty(phoneNumber)){
+        document.getElementById("done").removeAttribute("disabled");
+        return true;
+    }
+    return false;
+}
+
 
 Template.newPerson.events({
     'keyup input.pp' :function(e, tmpl){
@@ -23,13 +32,43 @@ Template.newPerson.events({
             document.getElementById("done").removeAttribute("disabled");
                           
                           
-                          
     }
-})
+});
 
-    control = function(){
-        if(!isEmpty(name) && !isEmpty(surname) && !isEmpty(phoneNumber)){
-            document.getElementById("done").removeAttribute("disabled");
-            return true;
+if(Meteor.isCordova){
+    
+    Template.newPerson.events({
+        'click #done' : function(){
+            var contact = navigator.contacts.create();
+            var phoneNumbers = [];
+                              
+            phoneNumbers[0] = new ContactField('mobile', phoneNumber, true);
+            contact.phoneNumbers = phoneNumbers;
+            
+            var userName = new ContactName();
+            userName.givenName = name;
+            userName.familyName = surname;
+            contact.name = userName;
+                              
+            contact.save(onSuccess, onError);
+                              
+            function onSuccess(contact){
+                List.insert({
+                    name : contact.name.formatted,
+                    number : contact.phoneNumbers[0].value
+                })
+                    IonModal.close();
+                
+            };
+                              
+            function onError(contact){
+                alert("olmadi");
+            };
         }
-    }
+                              
+
+    
+    });
+   
+}
+

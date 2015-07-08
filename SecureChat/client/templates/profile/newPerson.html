@@ -1,19 +1,23 @@
 <template name="newPerson">
-    {{#ionModal customTemplate=true }}
+    {{#ionModal customTemplate=true}}
             <div class="bar bar-header bar-stable">
                 <button data-dismiss="modal" class="button button-icon"><h5 class="assertive">Cancel</h5></button>
                 <h2 class="title">New Contact</h2>
-                <button class="button button-icon " disabled><h5 class="balanced">Done</h5></button>
+                <button class="button button-icon" id="done" disabled><h5 class="balanced">Done</h5></button>
                 
                 </div>
                 <div class="content has-header overflow-scroll">
                     <div class="padding">
                         <div class="row">
-                            <div class="circle-text"><div id="pic">
+                            
+                            <div class="circle-text">
+                                <div id="pic">
+                                </div>
+                            </div>
+                         
+                        
+                            <div class="col col-offset-10 col-66">
                                 
-                                </div>
-                                </div>
-                            <div class="col col-75">
                                 <input type="text" id="name" class="pp" placeholder=" First Name">
                                 <div style="border:0.5px solid grey">
                                 </div>
@@ -21,15 +25,15 @@
                                 <div style="border:0.5px solid grey">
                                 </div>
                             </div>
-                       </div>
+                       
+                        </div>
                     </div>
                     <div class="list list-inset">
                         <label class="item item-input">
-                            <i class="icon ion-ios-telephone"></i>
-                            <input type="text" placeholder="Phone Number">
-                                </label>
-                    </div>                </div>
-                
-               
+                        <i class="icon ion-ios-telephone"></i>
+                        <input type="text" id="phoneNumber" placeholder="Phone Number" pattern="[0-9]*">
+                        </label>
+                    </div>
+            </div>
     {{/ionModal}}
 </template>
