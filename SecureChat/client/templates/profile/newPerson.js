@@ -32,31 +32,14 @@ Template.newPerson.events({
             document.getElementById("done").removeAttribute("disabled");
                           
                           
-<<<<<<< Updated upstream
-=======
-                          
-    },
-    
-    "click #alert":function(){
-        
-        function alertDismissed() {
-    // do something
-    }
-
-navigator.notification.alert(
-    'You are the winner!',  // message
-    alertDismissed,         // callback
-    'Game Over',            // title
-    'Done'                  // buttonName
-);
->>>>>>> Stashed changes
     }
 });
 
 if(Meteor.isCordova){
     
     Template.newPerson.events({
-        'click #done' : function(){
+        'click #done' : function(e){
+            e.preventDefault();
             var contact = navigator.contacts.create();
             var phoneNumbers = [];
                               
@@ -71,10 +54,12 @@ if(Meteor.isCordova){
             contact.save(onSuccess, onError);
                               
             function onSuccess(contact){
-                List.insert({
+                              alert("girdim");
+                Contacts.insert({
                     name : contact.name.formatted,
                     number : contact.phoneNumbers[0].value
                 })
+                              alert("dbye yazdim");
                     IonModal.close();
                 
             };
@@ -82,10 +67,13 @@ if(Meteor.isCordova){
             function onError(contact){
                 alert("olmadi");
             };
+        },
+                    
+        'click #cancel' : function(e){
+            e.preventDefault();
+            IonModal.close();
         }
-                              
-
-    
+ 
     });
    
 }
