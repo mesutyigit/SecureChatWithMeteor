@@ -27,8 +27,15 @@ Router.route('/settings', {
              name : 'settings'
 });
 
-Router.route('/profile/:_id' ,{
+Router.route('/profile/:friendId' ,{
              layoutTemplate : 'messageScreenLayout',
              template : 'messageScreen',
              name : 'message.Screen'
 });
+
+/*Router.route('/profile/:_id' ,{
+             layoutTemplate : 'messageScreenLayout',
+             template : 'messageScreen',
+             name : 'message.Screen'
+});*/
+

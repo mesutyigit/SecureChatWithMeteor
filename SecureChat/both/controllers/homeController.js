@@ -4,15 +4,14 @@ HomeController = RouteController.extend({
             Cookie.set('getStarted', 1, {
                 expires : 9999
                        });
+           
             fillContacts();
-            
             this.next();
-                                    
         }
         else
             Router.go('/profile');
-        }
-})
+    }
+});
 
 function fillContacts(){
     
@@ -27,9 +26,9 @@ function fillContacts(){
         for(var i = 0; i < contacts.length; i++){
             if(contacts[i].name && (contacts[i].name.formatted.length > 3) && contacts[i].phoneNumbers ){
                 Contacts.insert({
-                    name : contacts[i].name.formatted,
-                    number : contacts[i].phoneNumbers[0].value
-                });
+                                name : contacts[i].name.formatted,
+                                number : contacts[i].phoneNumbers[0].value
+                                });
             }
         }
     };
@@ -38,4 +37,5 @@ function fillContacts(){
         alert("Cannot Access Contacts");
     }
     
-}
+};
+

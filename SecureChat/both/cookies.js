@@ -14,4 +14,4 @@ isOpened = function(){
         return false;
         
     return true;
-};
+}

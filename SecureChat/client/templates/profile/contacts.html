@@ -7,7 +7,16 @@
     {{#ionBody}}
         {{#ionNavView}}
             {{#ionContent}}
-                {{#ionList}}
+            {{#ionList}}
+                    {{#each deneme}}
+                        {{#ionItem}}
+                            {{#linkTo route='message.Screen'}}
+                                <button class="button button-large button-clear pp"><h3>{{name}}</h3></button><!-- pp classi her tiklamada streamle bilgi yollayabilmek icin -->
+                            {{/linkTo}}
+                        {{/ionItem}}
+                    {{/each}}
+                {{/ionList}}
+                <!--{{#ionList}}
                     {{#each lists}}
                         {{#ionItem}}
                             {{#linkTo route='message.Screen'}}
@@ -15,7 +24,7 @@
                             {{/linkTo}}
                         {{/ionItem}}
                     {{/each}}
-                {{/ionList}}
+                {{/ionList}}-->
             {{/ionContent}}
          {{> profileTab}}
         {{/ionNavView}}

@@ -54,12 +54,10 @@ if(Meteor.isCordova){
             contact.save(onSuccess, onError);
                               
             function onSuccess(contact){
-                              alert("girdim");
                 Contacts.insert({
                     name : contact.name.formatted,
                     number : contact.phoneNumbers[0].value
                 })
-                              alert("dbye yazdim");
                     IonModal.close();
                 
             };
@@ -67,13 +65,7 @@ if(Meteor.isCordova){
             function onError(contact){
                 alert("olmadi");
             };
-        },
-                    
-        'click #cancel' : function(e){
-            e.preventDefault();
-            IonModal.close();
         }
- 
     });
    
 }

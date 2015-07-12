@@ -86,9 +86,8 @@ Template.signup.events({
                                 status : "Available",
                                 online : false,
                                 lastSeen : false,
-                                friends : {
-                                           
-                                }
+                                friends : [ "vfkg64kBjbdvSBvS2", "SuSz3FqtZZpQPMAPS" ,"ZRmwHdsZ3KgnJ8Awf" // baslangicta bos olacak fakat key exchange icin deneme olarak yapildi              
+                                ]
                             }
                         }, function(err){
                             if(err){
