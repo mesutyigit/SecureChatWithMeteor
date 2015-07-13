@@ -18,7 +18,7 @@ Router.route('/contacts', {
 Router.route('/profile', {
              layoutTemplate : 'profileLayout',
              template : 'profile',
-             name : 'messages'
+             name : 'profile'
 });
 
 Router.route('/settings', {
@@ -27,15 +27,15 @@ Router.route('/settings', {
              name : 'settings'
 });
 
-Router.route('/profile/:friendId' ,{
-             layoutTemplate : 'messageScreenLayout',
-             template : 'messageScreen',
-             name : 'message.Screen'
-});
-
-/*Router.route('/profile/:_id' ,{
+/*Router.route('/profile/:friendId' ,{
              layoutTemplate : 'messageScreenLayout',
              template : 'messageScreen',
              name : 'message.Screen'
 });*/
+
+Router.route('/profile/:_id' ,{
+             layoutTemplate : 'messageScreenLayout',
+             template : 'messageScreen',
+             name : 'message.Screen'
+});
 

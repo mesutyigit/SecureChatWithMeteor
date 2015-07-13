@@ -1,12 +1,15 @@
-MessagesController = RouteController.extend({
+ProfileController = RouteController.extend({
                                         
     onBeforeAction : function(){
         if(!Meteor.user() && !Meteor.loggingIn()){
+            
             Router.go('/signup');
         }else{
-            //fillFriend(); key-exchange denemesi icin yapildi.
+            //fillFriend(); //key-exchange denemesi icin yapildi.
+            
             this.next();
         }
+        
     },
                                                                    
     action : function(){
@@ -22,7 +25,7 @@ MessagesController = RouteController.extend({
 //guvenli mesajlasma denemesi
 function fillFriend(){
 
-    arr = new ReactiveArray();
+    var arr = new ReactiveArray();
     arr = Meteor.users.findOne({_id : Meteor.userId()}).profile.friends;
     
     alert("dbye yazacagim");
@@ -30,7 +33,7 @@ function fillFriend(){
         Friends.insert({
             myId : Meteor.userId(),
             friendId : arr[i],
-            name : Meteor.users.findOne({_id : arr[i]}).profile.name
+            name : "Ebubekir" /*Meteor.users.findOne({_id : arr[i]}).profile.name*/
         })
        
     }

@@ -2,13 +2,13 @@
     {{#if isAndroid}}
         {{#ionTabs style="android" class="tabs-background-stable tabs-color-dark"}}
             {{> ionTab title="Contacts" path="contacts" iconOff="android-people" iconOn="android-people calm"}}
-            {{> ionTab title="Chats" path="messages" iconOff="android-chat" iconOn="android-chat calm"}}
+            {{> ionTab title="Chats" path="profile" iconOff="android-chat" iconOn="android-chat calm"}}
             {{> ionTab title="Settings" path="settings" iconOff="gear-b" iconOn="gear-b calm"}}
         {{/ionTabs}}
     {{else}}
         {{#ionTabs style="ios"}}
             {{> ionTab title="Contacts" path="contacts" iconOff="ios-people-outline" iconOn="ios-people calm"}}
-            {{> ionTab title="Chats" path="messages" iconOff="ios-chatboxes-outline" iconOn="ios-chatboxes calm"}}
+            {{> ionTab title="Chats" path="profile" iconOff="ios-chatboxes-outline" iconOn="ios-chatboxes calm"}}
             {{> ionTab title="Settings" path="settings" iconOff="ios-gear-outline" iconOn="ios-gear calm"}}
             
         {{/ionTabs}}

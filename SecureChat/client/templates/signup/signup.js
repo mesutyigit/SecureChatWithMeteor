@@ -78,6 +78,7 @@ Template.signup.events({
         var rPassword = tmpl.find('#rPassword').value;
     
         if(isNotEmpty(name) && isNotEmpty(surname) && isNotEmpty(email) && isNotEmpty(password) && isNotEmpty(rPassword) && isEmail (email) && isValidPassword(password) && areValidPassword(password, rPassword)){
+            
                        Accounts.createUser({email: email, password: rPassword,
                             profile : {
                                 name : name,
@@ -86,14 +87,14 @@ Template.signup.events({
                                 status : "Available",
                                 online : false,
                                 lastSeen : false,
-                                friends : [ "vfkg64kBjbdvSBvS2", "SuSz3FqtZZpQPMAPS" ,"ZRmwHdsZ3KgnJ8Awf" // baslangicta bos olacak fakat key exchange icin deneme olarak yapildi              
-                                ]
+                                
                             }
                         }, function(err){
                             if(err){
                                 popup('This user is already exist!', 'Warning');
                             }
                             else{
+                                
                                 Meteor.loginWithPassword(email, rPassword, function(err){
                                     if(err){
                                         popup("Can't Login System!", 'Warning');

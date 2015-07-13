@@ -1,3 +1,3 @@
 Template.profileLayout.rendered = function(){
-    Session.set('currentTab', 'tabs.one');
+    Session.set('currentTab', 'Chats');
 };

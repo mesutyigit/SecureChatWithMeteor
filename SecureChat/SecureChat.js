@@ -1,9 +1,25 @@
+keyTaked = new Meteor.Stream('key');
+keyGen = new Meteor.Stream('keyGen');
+
 if (Meteor.isClient) {
   // counter starts at 0
 }
 
 if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
-  });
+  keyTaked.permissions.read(function(){
+        return true;
+    });
+    
+    keyTaked.permissions.write(function(){
+        return true;
+    });
+    
+    keyGen.permissions.read(function(){
+        return true; 
+    });
+    
+    keyGen.permissions.write(function(){
+        return true;
+    });   
+    
 }

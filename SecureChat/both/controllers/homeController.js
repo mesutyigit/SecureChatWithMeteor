@@ -3,14 +3,21 @@ HomeController = RouteController.extend({
         if(isFirstTime()){
             Cookie.set('getStarted', 1, {
                 expires : 9999
-                       });
-           
-            fillContacts();
-            this.next();
+                       });              
+            //fillContacts();
+            this.next(); 
         }
-        else
+        else{
             Router.go('/profile');
+        }
+        
+    },
+    
+    action : function(){
+        if(this.ready())
+            this.render('home');
     }
+    
 });
 
 function fillContacts(){
