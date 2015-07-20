@@ -6,7 +6,6 @@
 
 meteor-platform
 autopublish
-insecure
 fourseven:scss@2.0.0
 meteoric:ionic-sass
 meteoric:ionicons-sass
@@ -18,5 +17,6 @@ chuangbo:cookie
 ground:db
 altapp:aes
 manuel:reactivearray
-service-configuration
 lepozepo:streams
+insecure
+service-configuration

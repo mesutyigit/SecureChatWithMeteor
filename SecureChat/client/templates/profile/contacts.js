@@ -1,83 +1,78 @@
+/* global Template */
+/* global Session */
+/* global owner */
+/* global keyHelper */
+/* global random */
+/* global num */
+/* global prime */
+/* global list */
+/* global Meteor */
+/* global sendActKey */
+/* global sendKey */
 if(Meteor.isCordova){
-     var prime = 23; 
-     var num = 3;
-     var random = (Math.random() * 11) + 10;                   
-     var keyHelper = (Math.pow(num, random)) % prime;
-     keyHelper = Math.floor(keyHelper);
-     Session.set('taked', false);
+    Template.contacts.rendered = function(){
+        alert(Meteor.userId());
+    }
+    Template.contacts.helpers({
+        /*lists : function(){
+            return Contacts.find({}, {sort : {name : 1}});
+        },*/
+        
+       deneme : function(){
+           return Meteor.users.find({}, {sort: {name : 1}});
+         }
+    });
      
-     sendKey = function(message, senderID, takerID){
-                keyTaked.emit('key', message, senderID, takerID);     
-                alert("yolladim");                       
-     };
-            
-     sendActKey = function(message, senderID, takerID){
-                keyGen.emit('keyGen', message, senderID, takerID);
-     };
+    owner = [];
+    list = [];
+    prime = 13;
+    num = 6;
+    random = (Math.random() * 5) + 10 ;
+    random = Math.floor(random);
+    keyHelper = (Math.pow(num, random)) % prime;
+    Session.set('taked', false);
+     
+    sendKey = function(message, ownerId, list){
+        keyTaked.emit('key', message, ownerId, list);
+        alert("sended");
+    };
     
-     keyTaked.on('key', function(message, senderID, myId){
-                alert("keyi aldim");
-                if(!Session.get('taked') && myId === Meteor.userId()){
-                    
-                    sendActKey(keyHelper, Meteor.userId(), senderID);
-                    var key = (Math.pow(message, random)) % prime;
-                    /*Chats.insert({
-                        myId : Meteor.userId(),
-                        friendId : senderID,
-                        key : key,
-                        body : "",
-                        created : new Date
-                    })
-                    alert(Chats.findOne({userId : Meteor.userId()}).key);*/
-                    
-                    alert(key);
-                    Session.set('taked', true);
-                                                                 
-                }
-                else{
-                    alert("I don't want to live on this planet anymore");
-                }
-     });
-                                
-     Template.contacts.events({//Diffie-Hellman Key Exchange
-       'click button.pp' : function(e, tmpl){
-            e.preventDefault();
+    sendActKey = function(message, senderID){
+        keyGen.emit('keyGen', message, senderID);
+        alert("keyi tekrar yolladigim kisi = " + senderID);
+    };
+    
+    keyTaked.on(Meteor.userId(), function(message, ownerId){
+        alert("taked");
+        if(!Session.get('taked')){
+            owner.push(ownerId);
+            sendActKey(keyHelper, owner);
+            var key = (Math.pow(message, random)) % prime;
+            alert("bendeki key = " + key);
+            Session.set('taked', true);
+        }
+        else{
+            alert("I don't want to live on this planet anymore");
+        }
+    });
 
-            sendKey(keyHelper, Meteor.userId(), this._id);
-                   
-            keyGen.on('keyGen', function(message, senderID, myId){
-                alert("yolladigim keye karsilik aldim");
-                if(!Session.get('taked') && myId === Meteor.userId()){
-                      
-                    var key = (Math.pow(message, random)) % prime;
-                   /* Chats.insert({
-                        userId : Meteor.userId(),
-                        friendId : senderID,
-                        key : key,
-                        body : "",
-                        created : new Date
-                    })
-                      
-                    alert(Chats.findOne({userId : Meteor.userId()}).key);*/
-                    alert(key);
+    Template.contacts.events({//Diffie-Hellman Key Exchange
+        'click button.pp' : function(e, tmpl){
+            e.preventDefault();
+            list.push(this._id);
+            sendKey(keyHelper, Meteor.userId(), list);       
+            keyGen.on(Meteor.userId(), function(message){
+                if(!Session.get('taked') ){
+                    var key = (Math.pow(message, random)) % prime; 
+                    alert("Bende ki key = " + key);
                     Session.set('taked', true);
                 }
                 else{
                     alert("I dont' want to live on this planet anymore");
                 }
             });
-       } 
-        
-        
+       }      
     });
-    
-    Template.contacts.helpers({
-        /*lists : function(){
-            return Contacts.find({}, {sort : {name : 1}});
-        },*/
-        
-        deneme : function(){
-            return Meteor.users.find({}, {sort: {name : 1}});
-        }
-    });
+
 }
+

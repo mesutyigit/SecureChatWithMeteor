@@ -1,8 +1,8 @@
 ProfileController = RouteController.extend({
                                         
     onBeforeAction : function(){
+        
         if(!Meteor.user() && !Meteor.loggingIn()){
-            
             Router.go('/signup');
         }else{
             //fillFriend(); //key-exchange denemesi icin yapildi.
@@ -14,7 +14,7 @@ ProfileController = RouteController.extend({
                                                                    
     action : function(){
         if(this.ready()){
-            this.render('profile');
+            this.render();
         }
         else
             this.render('loadingProfile');

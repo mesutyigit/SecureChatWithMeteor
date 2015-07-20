@@ -68,46 +68,45 @@ areValidPassword = function(value, confirm){
     return true;
 }
 
-Template.signup.events({
-    'click #sign' : function(e,tmpl){
-        e.preventDefault();
-        var name = trimInput(tmpl.find('#name').value);
-        var surname = trimInput(tmpl.find('#surName').value);
-        var email = trimInput(tmpl.find('#email').value.toLowerCase());
-        var password = tmpl.find('#password').value;
-        var rPassword = tmpl.find('#rPassword').value;
-    
-        if(isNotEmpty(name) && isNotEmpty(surname) && isNotEmpty(email) && isNotEmpty(password) && isNotEmpty(rPassword) && isEmail (email) && isValidPassword(password) && areValidPassword(password, rPassword)){
-            
-                       Accounts.createUser({email: email, password: rPassword,
-                            profile : {
-                                name : name,
-                                surname : surname,
-                                createdAt : new Date,
-                                status : "Available",
-                                online : false,
-                                lastSeen : false,
-                                
-                            }
-                        }, function(err){
-                            if(err){
-                                popup('This user is already exist!', 'Warning');
-                            }
-                            else{
-                                
-                                Meteor.loginWithPassword(email, rPassword, function(err){
-                                    if(err){
-                                        popup("Can't Login System!", 'Warning');
-                                    }
-                                    else
-                                    {
-                                        popupSign('Signed Up!', 'Welcome!');
-                                    }
-                                });
-                            }
+if(Meteor.isCordova){
+    Template.signup.events({
+        'click #sign' : function(e,tmpl){
+            e.preventDefault();
+            var name = trimInput(tmpl.find('#name').value);
+            var surname = trimInput(tmpl.find('#surName').value);
+            var email = trimInput(tmpl.find('#email').value.toLowerCase());
+            var password = tmpl.find('#password').value;
+            var rPassword = tmpl.find('#rPassword').value;
+        
+            if(isNotEmpty(name) && isNotEmpty(surname) && isNotEmpty(email) && isNotEmpty(password) && isNotEmpty(rPassword) && isEmail (email) && isValidPassword(password) && areValidPassword(password, rPassword)){
+                Accounts.createUser({email: email, password: rPassword,
+                   profile : {
+                       name : name,
+                       surname : surname,
+                       createdAt : new Date,
+                       status : "Available",
+                       online : false,
+                       lastSeen : false,
+                   }
+                }, function(err){
+                       if(err){
+                             popup('This user is already exist!', 'Warning');
                            }
-                       )
+                       else{
+                             Meteor.loginWithPassword(email, rPassword, function(err){
+                             if(err){
+                                 popup("Can't Login System!", 'Warning');
+                             }
+                             else
+                             {
+                                 popupSign('Signed Up!', 'Welcome!');
+                             }
+                             });
+                       }
+                   }
+               )
+            }
+                        
         }
-                    
-    }
-});
+    });
+}

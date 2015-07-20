@@ -15,7 +15,7 @@ HomeController = RouteController.extend({
     
     action : function(){
         if(this.ready())
-            this.render('home');
+            this.render();
     }
     
 });

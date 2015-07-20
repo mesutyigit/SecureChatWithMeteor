@@ -1,25 +1,32 @@
-keyTaked = new Meteor.Stream('key');
-keyGen = new Meteor.Stream('keyGen');
-
 if (Meteor.isClient) {
-  // counter starts at 0
 }
 
 if (Meteor.isServer) {
-  keyTaked.permissions.read(function(){
-        return true;
-    });
+	keyTaked.permissions.write(function(eventName){
+    	return eventName == 'key';
+	});
+	
+	keyTaked.permissions.read(function(eventName){
+		return this.userId == eventName;
+	});
+
+	keyTaked.on('key', function(message, owner, list){	
+    	list.forEach(function(userId){
+    		keyTaked.emit(list, message, owner);
+		});
+	});
+
+	keyGen.permissions.write(function(eventName){
+		return eventName == 'keyGen';
+	});
     
-    keyTaked.permissions.write(function(){
-        return true;
-    });
-    
-    keyGen.permissions.read(function(){
-        return true; 
-    });
-    
-    keyGen.permissions.write(function(){
-        return true;
-    });   
-    
+	keyGen.permissions.read(function(eventName){
+		return this.userId == eventName; 
+	});	
+
+	keyGen.on('keyGen', function(message, owner){
+    	owner.forEach(function(userId){
+    		keyGen.emit(owner, message);
+		});
+	});
 }
