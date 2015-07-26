@@ -2,6 +2,7 @@ if (Meteor.isClient) {
 }
 
 if (Meteor.isServer) {
+	
 	keyTaked.permissions.write(function(eventName){
     	return eventName == 'key';
 	});
