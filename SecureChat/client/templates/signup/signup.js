@@ -68,7 +68,7 @@ areValidPassword = function(value, confirm){
     return true;
 }
 
-if(Meteor.isClient){
+if(Meteor.isCordova){
     Template.signup.events({
         'click #sign' : function(e,tmpl){
             e.preventDefault();

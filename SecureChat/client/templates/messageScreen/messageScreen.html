@@ -1,4 +1,34 @@
 <template name="messageScreen">
+    {{#if isAndroid}}
+    <div class="bar bar-header bar-stable">
+        <button class="buttons button button-clear back-button pull-left button-entering button-active" id="back">
+            <i class="icon ion-android-arrow-back"></i>
+            Back
+        </button>
+        <h1 class="title">{{profile.name}}</h1>
+    </div>
+    
+    <hr>
+    
+    {{#ionContent}}
+    <div class="chatAndroid" id="chatAn">
+        <div class="insideAndroid"></div>
+    </div>
+    {{/ionContent}}
+    
+    
+    <div class="tabs">
+        <label class="item-input-wrapper">
+            <i class="icon ion-chatbubble placeholder-icon" style="font-size:2em;"> </i>
+            <textarea id="message" placeholder="Type A Message"></textarea>
+        </label>
+        <button class="button button-clear" id="sendAndroid">
+         <i class="icon ion-android-send" style="font-size:5em"></i>
+        </button>
+    </div>
+    
+    {{else}}
+    
     <div class="bar bar-header bar-stable">
         <button class="buttons button button-clear back-button pull-left button-entering button-active" id="back">
             <i class="icon ion-ios-arrow-back"></i>
@@ -10,7 +40,7 @@
     <hr>
     
     {{#ionContent}}
-   <div class="chat">
+    <div class="chat">
        <div class="inside"></div>
     </div>
     {{/ionContent}}
@@ -21,10 +51,12 @@
              <i class="icon ion-chatbubble placeholder-icon" style="font-size:2em;"> </i>
              <textarea id="message" placeholder="Type A Message"></textarea>
         </label>
-         <button class="button button-clear" id="send">
+         <button class="button button-clear" id="sendiOS">
        <i class="icon ion-ios-arrow-forward " style="font-size:5em"></i>
          </button>
     </div>
+    
+    {{/if}}
     
    
 </template>

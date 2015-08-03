@@ -4,7 +4,21 @@ if(Meteor.isCordova){
            window.history.back();
         },
         
-        "click #send": function()
+        "click #sendAndroid" : function(){
+            
+            var chatDiv = $("div.chatAndroid");
+            var insideDiv = $("div.insideAndroid");
+            var message = document.getElementById("message").value;
+            insideDiv.append('<div class="bubble me">'+ message + '</div><br/><br/><br/>');
+            insideDiv.append('<div class="bubble you">'+ message + '</div><br/><br/><br/>');
+            document.getElementById("message").value="";
+            insideDiv.css('overflow', 'hidden');
+            insideDiv.scrollTop(insideDiv[0].scrollHeight);
+            insideDiv.css('overflow', 'scroll');
+            
+        },
+        
+        "click #sendiOS": function()
         {
             
             var chatDiv = $("div.chat");
@@ -16,6 +30,7 @@ if(Meteor.isCordova){
             chatDiv.scrollTop(insideDiv.outerHeight());
             
         }
+        
     });
     
 

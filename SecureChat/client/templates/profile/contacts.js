@@ -33,6 +33,7 @@ if(Meteor.isCordova){
 
     sendActKey = function(message, senderID){
         keyGen.emit('keyGen', message, senderID);
+        alert("key tekrar yollandi");
     };
     
     keyTaked.on(Meteor.userId(), function(message, ownerId){

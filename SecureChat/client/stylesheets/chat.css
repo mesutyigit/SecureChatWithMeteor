@@ -11,12 +11,25 @@ body{
   height : 93%;
 }
 
+.chatAndroid {
+  display: flex;
+  flex-direction: column-reverse;
+  color :black;
+  position: relative;
+  height : 93%;
+}
+
+.insideAndroid {
+ 
+}
+
 .bubble{
     border-radius: 15px 15px 15px 15px;
     margin: 0 15px 10px;
     padding: 10px 15px;
     position: relative;
     max-width: 80%;
+    clear : both;
 }
 
 .bubble::before {
