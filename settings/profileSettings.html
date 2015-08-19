@@ -1,0 +1,13 @@
+<template name="profileSettings">
+	<div class="bar bar-header bar-stable">
+		<button class="buttons button button-clear back-button pull-left button-entering button-active" style="color:#03A9F4;" id="back">
+			<i class="icon ion-ios-arrow-back"></i>
+			Back
+		</button>
+			<h1 class="title">{{name}}</h1>
+	</div>
+	
+	{{#ionNavView}}
+    {{> profileTab}}
+    {{/ionNavView}}
+</template>

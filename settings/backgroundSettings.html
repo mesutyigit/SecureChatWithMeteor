@@ -1,0 +1,36 @@
+<template name="backgroundSettings">
+	<div class="bar bar-header bar-stable">
+		<button class="buttons button button-clear back-button pull-left button-entering button-active" style="color:#03A9F4;" id="back">
+			<i class="icon ion-ios-arrow-back"></i>
+			Back
+		</button>
+		<h1 class="title">Background Settings</h1>
+	</div>
+	{{#ionBody}}
+	
+		
+    {{#ionContent}}
+    <div class="list">
+		
+	<a class="item item-icon-left item-icon-right" href="/settings/chat/backgroundSettings/wallpapers">
+    	<i class="icon ion-folder wallpapers"></i>
+    	Wallpapers
+		<i class="icon ion-ios-arrow-forward"></i>
+  	</a>
+	
+	<a class="item item-icon-left item-icon-right" id="photos">
+    	<i class="icon ion-ios-flower photos"></i>
+    	Photos
+		<i class="icon ion-ios-arrow-forward"></i>
+  	</a> 
+	  
+	</div>
+	  {{/ionContent}}
+	  
+	  {{#ionNavView}}
+      {{> profileTab}}
+      {{/ionNavView}}
+	  
+	  {{/ionBody}}
+	  
+</template>

@@ -1,0 +1,33 @@
+<template name="chatSettings">
+	<div class="bar bar-header bar-stable">
+		<button class="buttons button button-clear back-button pull-left button-entering button-active" style="color:#03A9F4;" id="back">
+			<i class="icon ion-ios-arrow-back"></i>
+			Back
+		</button>
+		<h1 class="title">Chat Settings</h1>
+	</div>
+	{{#ionBody}}
+	
+    {{#ionContent}}
+    <div class="list">
+		
+	<a class="item item-icon-left item-icon-right" href="/settings/chat/backgroundSettings">
+    	<i class="icon ion-images background"></i>
+    	Background
+		<i class="icon ion-ios-arrow-forward"></i>
+  	</a>
+	  
+	<a class="item item-icon-left item-icon-right" href="/fontSize">
+    	<i class="icon ion-edit font-size"></i>
+    	Font-Size
+		<i class="icon ion-ios-arrow-forward"></i>
+  	</a>
+	</div>
+	  {{/ionContent}}
+	  
+	  {{#ionNavView}}
+      {{> profileTab}}
+      {{/ionNavView}}
+	
+	  {{/ionBody}}
+</template>
