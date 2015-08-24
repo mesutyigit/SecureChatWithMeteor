@@ -1,36 +1,38 @@
 <template name="messageScreen">
+    
     {{#if isAndroid}}
-    <div class="bar bar-header bar-stable">
-        <button class="buttons button button-clear back-button pull-left button-entering button-active" id="back">
+    <div class="bar bar-header bar-stable" style="position:fixed">
+        <button class="buttons button button-clear back-button pull-left button-entering button-active" style="color:#03A9F4;" id="back">
             <i class="icon ion-android-arrow-back"></i>
             Back
         </button>
         <h1 class="title">{{profile.name}}</h1>
     </div>
-    
-    <hr>
-    
+   
+    <img src="{{img}}" style="height: {{height}}px; width: 100%; position:fixed; z-index : -1;">
     {{#ionContent}}
-    <div class="chatAndroid" id="chatAn">
+    
+    <div class="chatAndroid" id="chatAndroid">
         <div class="insideAndroid"></div>
+        
     </div>
     {{/ionContent}}
     
-    
-    <div class="tabs">
-        <label class="item-input-wrapper">
-            <i class="icon ion-chatbubble placeholder-icon" style="font-size:2em;"> </i>
-            <textarea id="message" placeholder="Type A Message"></textarea>
-        </label>
-        <button class="button button-clear" id="sendAndroid">
-         <i class="icon ion-android-send" style="font-size:5em"></i>
+    <div class="tabs" id="tab" style="position:fixed">
+        <button class="button button-clear icon ion-paperclip customAttach" id="attachment">
+        </button>
+        
+        <textarea id="message" placeholder="Type A Message"></textarea>
+        
+        <button class="button button-clear icon ion-android-send customSend" id="sendAndroid" disabled>
         </button>
     </div>
     
     {{else}}
     
+    
     <div class="bar bar-header bar-stable">
-        <button class="buttons button button-clear back-button pull-left button-entering button-active" id="back">
+        <button class="buttons button button-clear back-button pull-left button-entering button-active" style="color:#03A9F4;" id="back">
             <i class="icon ion-ios-arrow-back"></i>
             Back
         </button>
@@ -39,24 +41,23 @@
     
     <hr>
     
+    <img src="{{img}}" style="height: {{height}}px; width: 100%; position:fixed; z-index : -1;">
     {{#ionContent}}
-    <div class="chat">
+    <div class="chat" id="chatiOS">
        <div class="inside"></div>
     </div>
     {{/ionContent}}
     
-    
-    <div class="tabs">
-        <label class="item-input-wrapper">
-             <i class="icon ion-chatbubble placeholder-icon" style="font-size:2em;"> </i>
-             <textarea id="message" placeholder="Type A Message"></textarea>
-        </label>
-         <button class="button button-clear" id="sendiOS">
-       <i class="icon ion-ios-arrow-forward " style="font-size:5em"></i>
+    <div class="tabs" id="tab">
+        <button class="button button-clear icon ion-paperclip customAttach" id="attachment">
+        </button>
+           
+        <textarea id="message" placeholder="Type A Message"></textarea>
+        
+         <button class="button button-clear icon ion-ios-arrow-forward customSend" id="sendiOS" disabled>
          </button>
     </div>
     
     {{/if}}
-    
    
 </template>

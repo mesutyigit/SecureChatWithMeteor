@@ -1,0 +1,33 @@
+<template name ="photoView">
+	{{#if isAndroid}}
+	<div class="bar bar-header bar-stable">
+		<button class="buttons button button-clear back-button pull-left button-entering button-active" style="color:#03A9F4;" id="cancel">
+			<i class="icon ion-ios-arrow-back"></i>
+			Cancel
+		</button>
+        <h1 class="title">Photo View</h1>
+	</div>
+	
+	{{#ionContent}}
+	
+		<img src="{{img}}" id="imageiOS" style="transform:rotate(90deg);">
+	
+	{{/ionContent}}
+		
+	{{else}}
+		<div class="bar bar-header bar-stable">
+		<button class="buttons button button-clear back-button pull-left button-entering button-active" style="color:#03A9F4;" id="cancel">
+			<i class="icon ion-ios-arrow-back"></i>
+			Cancel
+		</button>
+        <h1 class="title">Photo View</h1>
+		<button class="buttons button button-clear button-active" style="color:#03A9F4;" id="ok">
+			<i class="icon ion-checkmark-circled"></i>
+			
+		</button>
+	</div>
+	{{#ionContent}}
+		<img src="{{img}}" id="imageiOS" style="width:{{width}}px; position:absolute; margin: auto; top:0px; bottom:0px; left:0px; right:0px">
+	{{/ionContent}}
+	{{/if}}
+</template>

@@ -5,9 +5,11 @@ HomeController = RouteController.extend({
                 expires : 9999
                        });              
             //fillContacts();
+            localStorage.setItem('font', 'bubble-fontMedium');
             this.next(); 
         }
         else{
+            localStorage.setItem('font', 'bubble-fontMedium');
             Router.go('/profile');
         }
         

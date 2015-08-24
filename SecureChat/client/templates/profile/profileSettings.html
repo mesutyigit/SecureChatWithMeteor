@@ -1,0 +1,49 @@
+<template name="profileSettings">
+	{{#if isAndroid}}
+	<div class="bar bar-header bar-stable">
+		<button class="buttons button button-clear back-button pull-left button-entering button-active" style="color:#03A9F4;" id="back">
+			<i class="icon ion-ios-arrow-back"></i>
+			Back
+		</button>
+			<h1 class="title">{{name}}</h1>
+	</div>
+	
+	
+	{{else}}
+	<div class="bar bar-header bar-stable">
+		<button class="buttons button button-clear back-button pull-left button-entering button-active" style="color:#03A9F4;" id="back">
+			<i class="icon ion-ios-arrow-back"></i>
+			Back
+		</button>
+			<h1 class="title">{{name}}</h1>
+	</div>
+	
+	{{#ionContent}}
+	<div class="list">
+
+    	<a class="item item-thumbnail-left item-avatar ">
+      		<img src="messageBackground5.jpg" />
+      		<h2>Pretty Hate Machine</h2>
+      		<p>Nine Inch Nails</p>
+    	</a>
+		
+		<div class="roomDiv">
+                    <i class="icon ion-minus-circled assertive deleteButton" style="display:none; font-size:1.75em; position:absolute; margin-top: 6%; left:10px"></i>
+                        <a class="item item-avatar items" >
+                    <img src="messageBackground5.jpg" />
+                <h2>Aha</h2>
+            <p>Back off, man. I'm a scientist.</p>
+            </a>
+            </div>  
+	</div>
+	
+	
+
+{{/ionContent}}
+	
+	{{#ionNavView}}
+    	{{> profileTab}}
+    {{/ionNavView}}
+	
+	{{/if}}
+</template>

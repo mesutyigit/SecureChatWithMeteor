@@ -10,9 +10,7 @@
 /* global sendActKey */
 /* global sendKey */
 if(Meteor.isCordova){
-    Template.contacts.rendered = function(){
-        alert(Meteor.userId());
-    }
+    
     Template.contacts.helpers({
         /*lists : function(){
             return Contacts.find({}, {sort : {name : 1}});
@@ -60,17 +58,3 @@ if(Meteor.isCordova){
 
 }
 
-if(Meteor.isClient){
-    Template.contacts.rendered = function(){
-        alert(Meteor.userId());
-    }
-    Template.contacts.helpers({
-        /*lists : function(){
-            return Contacts.find({}, {sort : {name : 1}});
-        },*/
-        
-       deneme : function(){
-           return Meteor.users.find({}, {sort: {name : 1}});
-         }
-    });
-}

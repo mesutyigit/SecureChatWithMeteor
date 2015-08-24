@@ -1,40 +1,71 @@
 <template name="profile">
     {{#if isAndroid}}
-    
-        {{#contentFor "headerTitle"}}
-            <h1 class="title">Chats</h1>
-            <button class="button button-clear"><a href="/profile"><i class="icon ion-compose calm"></i></a></button>
-        {{/contentFor}}
-    
-        {{#ionBody}}
-    
+    <div class="bar bar-header bar-stable">
+        <h1 class="title title-left">Chats</h1>
+            <button class="button button-clear"  id="doneAndroid" style="position:absolute; margin-left: 90%; display:none;"><i class="icon ion-android-done" style="color:#009688"></i></button>
+            <button class="button button-clear" id="cancel" style="position:absolute; margin-left: 80%; display:none;"><i class="icon ion-android-close" style="color:#F44336"></i></button>
+       
+            <button class="button button-clear newChat" data-ion-modal="newPerson"><i class="icon ion-compose calm"></i></button>
+         
+    </div>
+        {{#ionContent}}
+        
+        <div class="list" id="listAndroid">
+            {{#each deneme}}
+                <div id="{{random}}" class="roomAndroid">
+                        <a class="item item-avatar items" >
+                            <img src="messageBackground5.jpg" id="profileImg">
+                            <h2>{{profile.name}}</h2>
+                            <p>Back off, man. I'm a scientist.</p>
+                            
+                        </a>
+                </div>
+            {{/each}}
+        </div>
+        
+        {{/ionContent}}
+  
             {{#ionNavView}}
                 {{> profileTab}}
             {{/ionNavView}}
     
-        {{/ionBody}}
-
+        
     {{else}}
     
-        {{#contentFor "headerTitle"}}
+       <div class="bar bar-header bar-stable">
+		<button class="buttons button button-clear edit" style="color:#03A9F4;">
+			Edit
+		</button>
+        <button class="buttons button button-clear done" style="color:#03A9F4; display:none">
+			Done
+		</button>
+		<h1 class="title">Chats</h1>
+        <button class="button button-clear new"><i class="icon ion-compose calm"></i></button>
         
-    
-            <button class="button button-clear">
-            <span class="back-text">
-                Edit
-            </span>
-            </button>
-            <h1 class="title">Chats</h1>
-            <button class="button button-clear"><a href="/profile"><i class="icon ion-compose calm"></i></a></button>
-        {{/contentFor}}
-    
-        {{#ionBody}}
-    
-            {{#ionNavView}}
+	</div>
+        {{#ionContent}}
+       
+        {{#ionList}}
+            {{#each deneme}}
+                
+                <div id="{{random}}" class="roomiOS">
+                    <i class="icon ion-minus-circled assertive deleteIcons" style="display:none; font-size:1.75em; position:absolute; margin-top: 6%; left:10px" id="{{random}}"></i>
+                        <a class="item item-avatar items" >
+                            <img src="messageBackground5.jpg">
+                            <h2>{{profile.name}}</h2>
+                            <p>Back off, man. I'm a scientist.</p>
+                            
+                        </a>
+                    <button class="button button-clear deleteButton" id="{{random}}" style="position:absolute; color:red; margin-left: 80%;">Delete</button>
+                </div>
+                 
+                
+            {{/each}}
+        {{/ionList}}      
+        {{/ionContent}}
+        
+        {{#ionNavView}}
                 {{> profileTab}}
             {{/ionNavView}}
-    
-        {{/ionBody}}
-        
     {{/if}}
 </template>

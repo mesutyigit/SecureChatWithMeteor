@@ -1,0 +1,36 @@
+<template name="fontSize">
+	<div class="bar bar-header bar-stable" style="position:fixed">
+		<button class="buttons button button-clear back-button pull-left button-entering button-active" style="color:#03A9F4;" id="back">
+			<i class="icon ion-ios-arrow-back"></i>
+			Back
+		</button>
+		<h1 class="title">Fontsize Preview</h1>
+	</div>
+	
+	
+	<img src="{{image}}" style="height: {{height}}px; width: 100%; position:fixed; z-index : -1;">
+    {{#ionContent}}
+    <div class="bubble me {{font}}">
+		Lorem ipsum dolor sit amet,consectetur adipiscing elit
+    </div>
+    
+    <div class="bubble you {{font}}">
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco
+    </div>
+	
+	{{/ionContent}}
+	
+	<div class="tabs" style="position:fixed">
+		 	<label class="item-input-wrapper item-select ">
+				 <div class="input-label">
+			Font Size
+		</div>
+			<select id="sa">
+				<option {{selectLarge}}>Large</option>
+				<option {{selectMedium}}>Medium</option>
+				<option {{selectSmall}}>Small</option>	 
+			</select>
+		</label>
+		</div>
+	
+</template>

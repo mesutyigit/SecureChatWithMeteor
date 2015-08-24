@@ -1,46 +1,42 @@
-body{
-    background-image : url("messageBackground.jpg");
-}
-
 .chat {
-  display: flex;
-  flex-direction: column-reverse;
-  color :black;
   position: relative;
-  overflow : auto;
   height : 93%;
+  overflow : scroll;
+  
 }
 
 .chatAndroid {
-  display: flex;
-  flex-direction: column-reverse;
-  color :black;
   position: relative;
   height : 93%;
+  overflow : scroll;
+  padding-top: 3%;
+  padding-bottom : 3%;
+   
 }
 
-.insideAndroid {
- 
-}
 
 .bubble{
     border-radius: 15px 15px 15px 15px;
     margin: 0 15px 10px;
     padding: 10px 15px;
     position: relative;
-    max-width: 80%;
+    max-width: 70%;
     clear : both;
+    display : inline-block;
+   
 }
 
 .bubble::before {
+  
     border-color: #b9f6ca;
-    border-radius: 50% 50% 50% 50%;
+     
+    border-radius: 70% 70% 70% 70%;
     border-style: solid;
     border-width: 0 20px;
-    bottom: 0;
-    clip: rect(20px, 35px, 42px, 0px);
+    bottom: 5px;
+    clip: rect(20px, 40px, 42px, -20px);
     content: " ";
-    height: 25px;
+    height: 30px;
     position: absolute;
     right: -50px;
     width: 5px;
@@ -51,6 +47,7 @@ body{
     float:right;
     background-color: #b9f6ca;
     color: black;
+    
 }
 
 .bubble.me:before {
@@ -70,17 +67,386 @@ body{
     left: -9px;           
 }
 
-textarea#mesaj
+.bubblePhoto{
+    border-radius: 15px 15px 15px 15px;
+    position: relative;
+    clear : both;
+    left : 5%;
+    top : 3%;
+    right : 3%;
+    bottom : 3%;
+}
+
+
+.bubblePhoto.me {
+    float:right;
+    background-color: #b9f6ca;
+    color: black;
+    
+}
+
+.bubblePhoto.me:before {
+    box-shadow: 2px -2px 2px 0 rgba( 178, 178, 178, .4 );
+    right: -9px;    
+}
+
+.bubblePhoto.you {
+    float:left;
+    background-color: white;
+    color: black;        
+}
+
+.bubblePhoto.you:before {
+    border-color:white;
+    box-shadow: -2px 2px 2px 0 rgba( 178, 178, 178, .4 );
+    left: -9px;           
+}
+
+.bubbleHigh{
+    border-radius: 15px 15px 15px 15px;
+    margin: 0 15px 10px;
+    padding: 5px 15px;
+    position: relative;
+    max-width: 40%;
+    clear : both;
+    display : inline-block;
+    
+}
+
+.bubbleHigh::before {
+  
+    border-color: #b9f6ca;
+     
+    border-radius: 70% 70% 70% 70%;
+    border-style: solid;
+    border-width: 0 20px;
+    bottom: 5px;
+    clip: rect(20px, 40px, 42px, -20px);
+    content: " ";
+    height: 30px;
+    position: absolute;
+    right: -50px;
+    width: 5px;
+    z-index: -1;  
+}
+
+.bubbleHigh.me {
+    float:right;
+    background-color: #b9f6ca;
+    color: black;
+    
+}
+
+.bubbleHigh.me:before {
+    box-shadow: 2px -2px 2px 0 rgba( 178, 178, 178, .4 );
+    right: -9px;    
+}
+
+.bubbleHigh.you {
+    float:left;
+    background-color: white;
+    color: black;        
+}
+
+.bubbleHigh.you:before {
+    border-color:white;
+    box-shadow: -2px 2px 2px 0 rgba( 178, 178, 178, .4 );
+    left: -9px;   
+          
+}
+
+.bubble70{
+    border-radius: 15px 15px 15px 15px;
+    margin: 0 15px 10px;
+    padding: 5px 15px;
+    position: relative;
+    max-width: 40%;
+    clear : both;
+    display : inline-block;
+    
+}
+
+.bubble70::before {
+  
+    border-color: #b9f6ca;
+     
+    border-radius: 70% 70% 70% 70%;
+    border-style: solid;
+    border-width: 0 20px;
+    bottom: 5px;
+    clip: rect(20px, 40px, 42px, -20px);
+    content: " ";
+    height: 30px;
+    position: absolute;
+    right: -50px;
+    width: 5px;
+    z-index: -1;  
+}
+
+.bubble70.me {
+    float:right;
+    background-color: #b9f6ca;
+    color: black;
+    
+}
+
+.bubble70.me:before {
+    box-shadow: 2px -2px 2px 0 rgba( 178, 178, 178, .4 );
+    right: -9px;    
+}
+
+.bubble70.you {
+    float:left;
+    background-color: white;
+    color: black;        
+}
+
+.bubble70.you:before {
+    border-color:white;
+    box-shadow: -2px 2px 2px 0 rgba( 178, 178, 178, .4 );
+    left: -9px;   
+          
+}
+
+.bubble66{
+    border-radius: 15px 15px 15px 15px;
+    margin: 0 15px 20px;
+    padding: 5px 10px 5px;
+    position: relative;
+    max-width: 45%;
+    clear : both;
+    display : inline-block;
+    
+}
+
+.bubble66::before {
+  
+    border-color: #b9f6ca;
+     
+    border-radius: 70% 70% 70% 70%;
+    border-style: solid;
+    border-width: 0 20px;
+    bottom: 5px;
+    clip: rect(20px, 40px, 42px, -20px);
+    content: " ";
+    height: 30px;
+    position: absolute;
+    right: -50px;
+    width: 5px;
+    z-index: -1;  
+}
+
+.bubble66.me {
+    float:right;
+    background-color: #b9f6ca;
+    color: black;
+    
+}
+
+.bubble66.me:before {
+    box-shadow: 2px -2px 2px 0 rgba( 178, 178, 178, .4 );
+    right: -9px;    
+}
+
+.bubble66.you {
+    float:left;
+    background-color: white;
+    color: black;        
+}
+
+.bubble66.you:before {
+    border-color:white;
+    box-shadow: -2px 2px 2px 0 rgba( 178, 178, 178, .4 );
+    left: -9px;   
+          
+}
+
+.bubble64{
+    border-radius: 15px 15px 15px 15px;
+    margin: 0 15px 10px;
+    padding: 0px 0px;
+    position: relative;
+    max-width: 40%;
+    clear : both;
+    display : inline-block;
+    
+}
+
+.bubble64::before {
+  
+    border-color: #b9f6ca;
+     
+    border-radius: 70% 70% 70% 70%;
+    border-style: solid;
+    border-width: 0 20px;
+    bottom: 5px;
+    clip: rect(20px, 40px, 42px, -20px);
+    content: " ";
+    height: 30px;
+    position: absolute;
+    right: -50px;
+    width: 5px;
+    z-index: -1;  
+}
+
+.bubble64.me {
+    float:right;
+    background-color: #b9f6ca;
+    color: black;
+    
+}
+
+.bubble64.me:before {
+    box-shadow: 2px -2px 2px 0 rgba( 178, 178, 178, .4 );
+    right: -9px;    
+}
+
+.bubble64.you {
+    float:left;
+    background-color: white;
+    color: black;        
+}
+
+.bubble64.you:before {
+    border-color:white;
+    box-shadow: -2px 2px 2px 0 rgba( 178, 178, 178, .4 );
+    left: -9px;   
+          
+}
+
+
+.bubblePhoto64{
+    border-radius: 15px 15px 15px 15px;
+    height: 75px;
+    width: 125px;
+    background-size: cover; 
+    zoom:110%; 
+    border:0.5px solid #b9f6ca;
+    position: relative;
+    clear : both;
+    left : 5%;
+    top : 3%;
+    right : 3%;
+    bottom : 3%;
+}
+
+
+.bubblePhoto64.me {
+    float:right;
+    background-color: #b9f6ca;
+    color: black;
+    
+}
+
+.bubblePhoto64.me:before {
+    box-shadow: 2px -2px 2px 0 rgba( 178, 178, 178, .4 );
+    right: -9px;    
+}
+
+.bubblePhoto64.you {
+    float:left;
+    background-color: white;
+    color: black;        
+}
+
+.bubblePhoto64.you:before {
+    border-color:white;
+    box-shadow: -2px 2px 2px 0 rgba( 178, 178, 178, .4 );
+    left: -9px;           
+}
+
+
+
+.imag{
+  position : absoulute;
+  margin : auto;
+  top : 0px;
+  bottom : 0px;
+  left : 0px;
+  right : 0px;
+  
+}
+
+textarea#message
 {
+    
     width:100%;
-    display:block;
+    display: inline-block;
     max-width:100%;
     line-height:1.5;
     border-radius:3px;
-    background:transparent;
     transition:box-shadow 0.5s ease;
     box-shadow:0 4px 6px rgba(0,0,0,0.1);
     font-smoothing:subpixel-antialiased;
     z-index: 99999;
     position: relative;
+    overflow : scroll;
+    height : 35px;
+    
+}
+
+.bubble-fontSmall{
+  font-size : 10px;
+}
+
+.bubble-fontMedium{
+  font-size : 14px;
+}
+
+.bubble-fontLarge{
+  font-size : 20px;
+}
+
+.aa{
+  width : 100px;
+  height : 165px;
+}
+
+.popup-body{
+  opacity : 0.8;
+  text-align : center;
+  
+}
+
+.button-reply{
+  background-color : #00BFA5;
+  color : white;
+  
+}
+
+.button-delete{
+  background-color : #F44336;
+  color : whitesmoke;
+}
+
+.photos{
+  color:#E91E63;
+}
+
+.wallpapers{
+  color : #FFD600;
+  
+}
+
+
+.background {
+  color : #26A69A;
+}
+
+.font-size{
+  color:#FF9800;
+}
+
+.customAttach,
+
+.customAttach:before{
+  font-size : 35px !important;
+  color : #00BCD4;
+}
+
+.customSend,
+
+.customSend:before{
+  font-size : 35px !important;
+  color: #009688;
 }

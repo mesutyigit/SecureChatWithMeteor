@@ -13,6 +13,7 @@ MessageScreenController = RouteController.extend({
     },
     
     action : function(){
+        
         keyGen.on(Meteor.userId(), function(message){
             if(!Session.get('taked') ){
                 var key = (Math.pow(message, random)) % prime; 
@@ -44,7 +45,8 @@ MessageScreenController = RouteController.extend({
        // return Contacts.findOne({_id: this.params._id}); //tiklanan kisinin bilgilerini diger sayfaya yolluyoruz.
        //return Friends.findOne({friendId : this.params.friendId});
        return Meteor.users.findOne({_id : this.params._id});
-    }
+    },
+   
 });
 
 sendKey = function(message, ownerId, list){

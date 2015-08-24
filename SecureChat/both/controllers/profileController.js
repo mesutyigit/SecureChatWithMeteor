@@ -14,6 +14,13 @@ ProfileController = RouteController.extend({
                                                                    
     action : function(){
         if(this.ready()){
+            if(Background.find().count() == 0){
+                Background.insert({
+                    userId : Meteor.userId(),
+                    image : '/messageBackground.jpg'
+                })
+            }
+            
             this.render();
         }
         else

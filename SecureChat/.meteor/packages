@@ -16,7 +16,8 @@ accounts-password
 chuangbo:cookie
 ground:db
 altapp:aes
-manuel:reactivearray
 lepozepo:streams
 insecure
 service-configuration
+mdg:camera
+chriswessels:hammer

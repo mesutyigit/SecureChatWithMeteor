@@ -1,4 +1,4 @@
-$positive: #DE4F4F;
+$positive: #387ef5;
 $loading-font-size: 22px;
 
 @import '.meteor/local/build/programs/server/assets/packages/meteoric_ionic-sass/ionic';
@@ -31,6 +31,10 @@ $loading-font-size: 22px;
 
 .popover {
   height: auto;
+}
+
+body.keyboard-open .platform-android .content.overflow-scroll {
+  bottom: 0px !important;
 }
 
 .item-button-left, .item-button-right {

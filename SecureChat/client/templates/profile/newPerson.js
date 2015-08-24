@@ -2,16 +2,9 @@ var name;
 var surname;
 var phoneNumber;
 
-control = function(){
-    if(!isEmpty(name) && !isEmpty(surname) && !isEmpty(phoneNumber)){
-        document.getElementById("done").removeAttribute("disabled");
-        return true;
-    }
-    return false;
-}
-
-
-Template.newPerson.events({
+if(Meteor.isCordova){
+    
+    Template.newPerson.events({
     'keyup input.pp' :function(e, tmpl){
         name = tmpl.find('#name').value;
         surname = tmpl.find('#surname').value;
@@ -26,19 +19,18 @@ Template.newPerson.events({
                           
     'keyup #phoneNumber' : function(e, tmpl){
         phoneNumber = tmpl.find('#phoneNumber').value;
-        if(!control())
+        
+        if(isEmpty(phoneNumber) ){
+            console.log("empty" + phoneNumber);
             document.getElementById("done").setAttribute("disabled");
+        }
         else
             document.getElementById("done").removeAttribute("disabled");
                           
                           
-    }
-});
-
-if(Meteor.isCordova){
+    },
     
-    Template.newPerson.events({
-        'click #done' : function(e){
+    'click #done' : function(e){
             e.preventDefault();
             var contact = navigator.contacts.create();
             var phoneNumbers = [];
@@ -66,7 +58,15 @@ if(Meteor.isCordova){
                 alert("olmadi");
             };
         }
+        
     });
-   
+    
 }
 
+control = function(){
+    if(!isEmpty(name) && !isEmpty(surname) && !isEmpty(phoneNumber)){
+        document.getElementById("done").removeAttribute("disabled");
+        return true;
+    }
+    return false;
+}
