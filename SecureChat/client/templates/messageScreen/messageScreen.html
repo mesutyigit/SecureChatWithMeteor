@@ -36,7 +36,9 @@
             <i class="icon ion-ios-arrow-back"></i>
             Back
         </button>
-        <h1 class="title">{{profile.name}}</h1>
+        <h1 class="title friendName">{{profile.name}}</h1>
+        <h1 class="title counter" style="display:none">{{counter}} Selected</h1>
+        
     </div>
     
     <hr>
@@ -44,11 +46,14 @@
     <img src="{{img}}" style="height: {{height}}px; width: 100%; position:fixed; z-index : -1;">
     {{#ionContent}}
     <div class="chat" id="chatiOS">
-       <div class="inside"></div>
+        
+            <div class="inside" id="{{random}}"></div>
+        
+       
     </div>
     {{/ionContent}}
     
-    <div class="tabs" id="tab">
+    <div class="tabs" id="tabMessage">
         <button class="button button-clear icon ion-paperclip customAttach" id="attachment">
         </button>
            
@@ -56,6 +61,29 @@
         
          <button class="button button-clear icon ion-ios-arrow-forward customSend" id="sendiOS" disabled>
          </button>
+    </div>
+    
+    <div class="tabs-icon-top" id="tabButtons" style="display:none">
+        <div class="tabs">
+                <a class="tab-item iosDelete" data-ion-tab="">
+                    <i class="icon ion-ios-trash" style="color:#D50000"></i>
+                        Delete
+                </a>
+        
+                <a class="tab-item iosForward" data-ion-tab="">
+                    <i class="icon ion-ios-redo" style="color:#00BFA5"></i>
+                        Forward
+                </a>
+                <a class="tab-item iosCopy" data-ion-tab="">
+                    <i class="icon ion-ios-list calm" ></i>
+                        Copy
+                </a>
+                <a class="tab-item iosCancel" data-ion-tab="">
+                    <i class="icon ion-ios-close"></i>
+                        Cancel
+                </a>
+                
+        </div>
     </div>
     
     {{/if}}

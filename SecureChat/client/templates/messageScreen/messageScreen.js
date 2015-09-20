@@ -5,6 +5,8 @@
 if(Meteor.isCordova){
     var destinationType;
     var pictureSource;
+    var messages = [];
+    Session.setDefault('messagesCounter', 0);/*secilen mesaj sayisini reaktif olarak bildirmek icin */
     
     Template.messageScreen.helpers({
         img : function(){
@@ -13,7 +15,15 @@ if(Meteor.isCordova){
         
 		height : function(){
 			return $(window).height();// arka plan resmi yuksekligi her ekrana gore uyumlu olsun
-		}
+		},
+        
+        random : function(){
+            return Random.id();
+        },
+        
+        counter : function(){
+            return Session.get('messagesCounter');
+        }
     })
     
     Template.messageScreen.rendered = function(){ 
@@ -45,40 +55,39 @@ if(Meteor.isCordova){
             
             
             
-            if((height / width) < 0.64){//height/width 0.64 ten kucuk ise
-                console.log("lower than 0.64");
-                $('div.inside').append('<div class="bubble64 me" ><div class="bubblePhoto64 me fromMePhoto" id='+ Random.id() +' style="background-image : url(' + localStorage.getItem('selectedPhoto') + '); "></div></div>');
-                localStorage.setItem('full', 'false');
-            }
-            else if((height / width) < 0.66){//height/width 0.66 ten kucuk ise
-                console.log("lower than 0.66");
-                $('div.inside').append('<div class="bubble66 me""><div class="bubblePhoto me fromMePhoto" id='+ Random.id() +' style="height:100px; width:150px; background-image : url(' + localStorage.getItem('selectedPhoto') + '); background-size: cover; zoom:110%; border:0.5px solid #b9f6ca; background-clip : content-box;"></div></div>');
-                localStorage.setItem('full', 'false');
+            else{
+                if((height / width) < 0.64){//height/width 0.64 ten kucuk ise
+                    console.log("lower than 0.64");
+                    $('div.inside').append('<div class="bubble64 me" ><div class="bubblePhoto64 me fromMePhoto" id='+ Random.id() +' style="background-image : url(' + localStorage.getItem('selectedPhoto') + '); "></div></div>');
+                    localStorage.setItem('full', 'false');
+                }
+                else if((height / width) < 0.66){//height/width 0.66 ten kucuk ise
+                    console.log("lower than 0.66");
+                    $('div.inside').append('<div class="bubble66 me""><div class="bubblePhoto me fromMePhoto" id='+ Random.id() +' style="height:100px; width:150px; background-image : url(' + localStorage.getItem('selectedPhoto') + '); background-size: cover; zoom:110%; border:0.5px solid #b9f6ca; background-clip : content-box;"></div></div>');
+                    localStorage.setItem('full', 'false');
                 
+                }
+                else if((height / width) < 0.70){//height/width 0.70 ten kucuk ise
+                    console.log("lower than 0.70");
+                    $('div.inside').append('<div class="bubble70 me" style="max-width: 69%;"><div class="bubblePhoto me fromMePhoto" id='+ Random.id() +' style="height:125px; width:250px; background-image : url(' + localStorage.getItem('selectedPhoto') + '); background-size: cover; border:0.5px solid #b9f6ca"></div></div>');
+                    localStorage.setItem('full', 'false');
+                }
+                else{//height/width orani yuksek oranda ise
+                    console.log("else");
+                    $('div.inside').append('<div class="bubbleHigh me" style="max-width:77%;"><div class="bubblePhoto me fromMePhoto" id='+ Random.id() +' style="height:200px; width:275px; background-image : url(' + localStorage.getItem('selectedPhoto') + '); background-size: cover; border:0.5px solid #b9f6ca;zoom: 103%;"></div></div>');
+                    localStorage.setItem('full', 'false');
+                }
             }
-            else if((height / width) < 0.70){//height/width 0.70 ten kucuk ise
-                console.log("lower than 0.70");
-                $('div.inside').append('<div class="bubble70 me" style="max-width: 69%;"><div class="bubblePhoto me fromMePhoto" id='+ Random.id() +' style="height:125px; width:250px; background-image : url(' + localStorage.getItem('selectedPhoto') + '); background-size: cover; border:0.5px solid #b9f6ca"></div></div>');
-                localStorage.setItem('full', 'false');
-            }
-            else{//height/width orani yuksek oranda ise
-                console.log("else");
-                $('div.inside').append('<div class="bubbleHigh me" style="max-width:77%;"><div class="bubblePhoto me fromMePhoto" id='+ Random.id() +' style="height:200px; width:275px; background-image : url(' + localStorage.getItem('selectedPhoto') + '); background-size: cover; border:0.5px solid #b9f6ca;zoom: 103%;"></div></div>');
-                localStorage.setItem('full', 'false');
-            }
-            
-            
-            
+           
         }
         
         if(Platform.isAndroid()){//baslangicta klavye acilmasi icin
-            try{cordova.plugins.Keyboard.show();
-            document.querySelector('#message').focus();
-            }
-        catch(e){
+            cordova.plugins.Keyboard.show();
+            document.getElementById('message').focus();
         }
         
-        document.getElementById('message').focus();//iOS klavye otomatik acilsin diye
+        else{
+            document.getElementById('message').focus();//iOS klavye otomatik acilsin diye  
         }
         
     }
@@ -88,12 +97,15 @@ if(Meteor.isCordova){
         if(Platform.isAndroid()){
             $('div.insideAndroid').css('height', '93%');
             $('div.bubble:last').get(0).scrollIntoView();
-           
         }
         
-        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);//ios done next back toolu klavye acildigi zaman gozukmemesi icin
-        document.getElementById('message').focus();//klavye acilinca otomatik textarea focus ol
-        $('div.bubble:last').get(0).scrollIntoView();//en son mesaja odaklan
+        else{
+            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);//ios done next back toolu klavye acildigi zaman gozukmemesi icin
+            document.getElementById('message').focus();//klavye acilinca otomatik textarea focus ol
+            $('div.bubble:last').get(0).scrollIntoView();//en son mesaja odaklan    
+        }
+        
+        
         
     });
     
@@ -119,7 +131,7 @@ if(Meteor.isCordova){
            window.history.back();    
         },
         
-        'swiperight .chatiOS' : function(e){//ekranda saga kaydirdigin zaman geri gitme (iOS)
+        'swiperight .chat' : function(e){//ekranda saga kaydirdigin zaman geri gitme (iOS)
             cordova.plugins.Keyboard.close();
             window.history.back();
         },
@@ -202,7 +214,7 @@ if(Meteor.isCordova){
                 },
                 buttonClicked: function(index) {
                     if (index === 0) {
-                       navigator.camera.getPicture()//Video Cekim
+                       navigator.camera.getPicture()//Fotograf Cekim
                        
                     }
                     
@@ -250,49 +262,136 @@ if(Meteor.isCordova){
                 
                 });
         },
+        
+        "taphold .fromMe" : function(e){
+            /* mesaj baloncuguna basili tutuldugu zaman ios icin secilen baloncugun arka plan resmi degisir
+            ayni zaman da butun ic dive clicable classi eklenir 
+            bu class sayesinde tek seferde click islemi yapip mesaj baloncugunu secebiliriz
+            ust tabdan kisi isminin display none yapilir onun yerine secilen mesaj sayisini reaktif olarak gosteren counter gelir
+            iOS icin : alt tarafa tab eklenir bu tablarda kisinin yapabilecegi eylemelr mevcuttur
+            ** TODOS ** fromMe ve fromYou olarak degistir arka plan renklerinin farkliligindan dolayi!
+            */
+            
+            if(Platform.isAndroid()){
+                
+            }   
+            
+            else{
+                
+                var message = e.currentTarget;
+                messages.push(message.id);
+                $('#' + message.id + '').css('background-color', '#607D8B');
+                $('.bubble').addClass("clickable");
+                Session.set('messagesCounter', messages.length);
+                $('.friendName').css('display', 'none');
+                $('.counter').css('display', 'block');
+                $('#tabMessage').css('display', 'none');
+                $('#tabButtons').css('display', 'block');
+                
+            }
+        },
+        
+        "click .clickable" : function(e){
+            /*Bu class sayesinde her tiklamada secilen mesaj baloncugu messages arrayine aktarilir
+             */
+             
+            if(Platform.isAndroid()){
+                
+            }
+            else{
+                var message = e.currentTarget;
+                /*Eger tiklanan mesaj baloncugunun arka plan rengi zaten daha onceden degismis ise bu mesaj baloncugu daha onceden secilmis demektir
+                bu nedenden dolayi da o mesaj baloncugunun idsini messages arrayinden cikartip arka plan resmini de duzeltiriz
+                ** TODO ** Benden giden ve karsidan gelen diye ayrim yapilmasi gerekli!*/
+                
+                if($('#' + message.id + '').css("background-color") === "rgb(255, 0, 0)"){
+                    console.log('red');
+                    var index = messages.indexOf(message.id);
+                    messages.pop(index, 1);
+                    $('#' + message.id + '').css("background-color", '#b9f6ca');
+                    Session.set('messagesCounter', messages.length);
+                }
+                else{
+                    messages.push(message.id);
+                    $('#' + message.id + '').css('background-color', '#607D8B'); 
+                    Session.set('messagesCounter', messages.length);
+                }
+                
+            }
+            
+        },
+        
+         /*iOS ta tapholddan sonra alt tarafta cikan tabdaki secenekler*/
+         
+        "click .iosDelete" : function(e){
+            
+            console.log('clicked iosDelete'); 
+        },
+        
+        "click .iosForward" : function(e){
+            console.log('clicked iosForward');
+        },
+        
+        "click .iosCopy" : function(e){
+            console.log('clocked iosCopy');
+        },
+        
+        "click .iosCancel" : function(e){
+            /*Bu taba tiklandigi zaman tum tasarim eski haline donup messages arrayi bosaltilmalidir */
+            console.log("clicked iosCancel");
+            $('.bubble me').css('background-color', '#b9f6ca');
+            $('.bubble you').css('background-color', 'white');
+            messages = [];
+            Session.set('messagesCounter', messages.length);
+            $('#tabButtons').css('display', 'none');
+            $('#tabMessage').css('display', '-webkit-flex');
+        },
        
+            /* Android icin gonder butonunda yapilacak islemler */
         "touchstart #sendAndroid" : function(e){
-            $('div.insideAndroid').css('height', '100%');
-            $('#tab').css("height", '50px');   
-            $('#message').css("height", '35px');
-            var id = Random.id();
+            $('div.insideAndroid').css('height', '100%');/*Klavye acildigi zaman 93% ye kucultulen divin boyutunu yukselt */
+            $('#tab').css("height", '50px');  /* her entera basildigi zaman tabin heighti yukseltildigi icin butona basildigi zaman tekrar eski haline getir */ 
+            $('#message').css("height", '35px'); /* her entera basildigi zaman textareanin heighti yukseltildigi icin butona basildigi zaman tekrar eski haline getir */
+            
             var insideAndroid = $("div.insideAndroid");
             var message = document.getElementById("message").value;
             message = message.replace(/\n/g, '<br>');//entera basildigi zaman ekrana bosluk koymasi icin /g butun elemanlari kontrol ediyor
-            insideAndroid.append('<div class="bubble ' + localStorage.getItem('font') + ' me fromMe " id='+ id +'>'+ message + '</div>');
-            insideAndroid.append('<div class="bubble ' + localStorage.getItem('font') + ' you fromYou" id =' + (id + 1) +  '>'+ message + '</div>');
-            document.getElementById("message").value="";
+            insideAndroid.append('<div class="bubble ' + localStorage.getItem('font') + ' me fromMe " id='+ Random.id() +'>'+ message + '</div>');/* Userin belirledigi font boyutu ile ekranda mesaji goster */
+            insideAndroid.append('<div class="bubble ' + localStorage.getItem('font') + ' you fromYou" id =' + Random.id() +  '>'+ message + '</div>');
+            document.getElementById("message").value=""; /* Textareanin icini bosalt */
+            /* Android icin her send e basildigi zaman scrollu en alta kaydirma */
             insideAndroid.css('overflow', 'hidden');
             insideAndroid.scrollTop(insideAndroid[0].scrollHeight);
             insideAndroid.css('overflow', 'scroll');
+            /* Gondere basildigi zaman bos mesaj yollanamamasi icin send butonunu disabled yap */
             $('#sendAndroid').attr('disabled', true);
             
         },
         
         "touchend #sendAndroid" : function(){
+            /* Send butonundan el kalktigi zaman herhangi bir sey gerceklestirme */
             return;
         },
         
         "touchstart #sendiOS": function()
         {
-            $('#tab').css("height", '50px');   
-            $('#message').css("height", '35px');
-            var id = Random.id();
+            $('#tabMessage').css("height", '50px'); /* her entera basildigi zaman tabMessagein heighti yukseltildigi icin butona basildigi zaman tekrar eski haline getir */  
+            $('#message').css("height", '35px'); /* her entera basildigi zaman textareanin heighti yukseltildigi icin butona basildigi zaman tekrar eski haline getir */ 
             var insideiOS = $("div.inside");
             var chatiOS = $("div.chat");
             var message = document.getElementById("message").value;
             message = message.replace(/\n/g, '<br>');//entera basildigi zaman ekrana bosluk koymasi icin /g butun elemanlari kontrol ediyor
-            insideiOS.append('<div class="bubble ' + localStorage.getItem('font') + ' me fromMe" id='+ id +'>'+ message + '</div>');
-            insideiOS.append('<div class="bubble ' + localStorage.getItem('font') +' you fromYou" id='+ (id + 1) + '>'+ message + '</div>');
-            document.getElementById("message").value="";
-            $('div.bubble:last').get(0).scrollIntoView();
-            $('#sendiOS').attr('disabled', true);
+            insideiOS.append('<div class="bubble ' + localStorage.getItem('font') + ' me fromMe" id='+ Random.id() +'>'+ message + '</div>'); /* Userin belirledigi font boyutu ile ekranda mesaji goster */
+            insideiOS.append('<div class="bubble ' + localStorage.getItem('font') +' you fromYou" id='+ Random.id() + '>'+ message + '</div>');
+            document.getElementById("message").value="";/* Textareanin icini bosalt */
+            $('div.bubble:last').get(0).scrollIntoView(); /* iOS icin her send e basildigi zaman scrollu en alta kaydirma */
+            $('#sendiOS').attr('disabled', true);/* Gondere basildigi zaman bos mesaj yollanamamasi icin send butonunu disabled yap */
             
             
         },    
         
         "touchend #sendiOS" : function(){
-            document.getElementById('message').focus();
+            //document.getElementById('message').focus();
             return;
         },
         
@@ -302,7 +401,7 @@ if(Meteor.isCordova){
             window.history.back();
         },
         
-        "taphold .fromMe" : function(e){
+        /*"taphold .fromMe" : function(e){
            var bubble = e.currentTarget;
            //e.preventDefault();
            
@@ -427,7 +526,7 @@ if(Meteor.isCordova){
                     });
                    
            
-        },
+        },*/
         
       
     });

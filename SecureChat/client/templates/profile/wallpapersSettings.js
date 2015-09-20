@@ -34,7 +34,7 @@ if(Meteor.isCordova){
 					Router.go('/wallpaperTry');	
 				}
 			
-			}, 250);
+			}, 350);
 			
 		},
 		

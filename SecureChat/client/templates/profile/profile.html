@@ -2,8 +2,8 @@
     {{#if isAndroid}}
     <div class="bar bar-header bar-stable">
         <h1 class="title title-left">Chats</h1>
-            <button class="button button-clear"  id="doneAndroid" style="position:absolute; margin-left: 90%; display:none;"><i class="icon ion-android-done" style="color:#009688"></i></button>
-            <button class="button button-clear" id="cancel" style="position:absolute; margin-left: 80%; display:none;"><i class="icon ion-android-close" style="color:#F44336"></i></button>
+            <button class="button button-clear"  id="androidDone" style="position:absolute; margin-left: 90%; display:none;"><i class="icon ion-android-done" style="color:#009688"></i></button>
+            <button class="button button-clear" id="cancel" style="position:absolute; margin-left: 75%; display:none;"><i class="icon ion-android-close" style="color:#F44336"></i></button>
        
             <button class="button button-clear newChat" data-ion-modal="newPerson"><i class="icon ion-compose calm"></i></button>
          
@@ -13,8 +13,8 @@
         <div class="list" id="listAndroid">
             {{#each deneme}}
                 <div id="{{random}}" class="roomAndroid">
-                        <a class="item item-avatar items" >
-                            <img src="messageBackground5.jpg" id="profileImg">
+                        <a class="item item-avatar" id="{{random}}">
+                            <img src="messageBackground5.jpg" class="profileImg" id="{{random}}">
                             <h2>{{profile.name}}</h2>
                             <p>Back off, man. I'm a scientist.</p>
                             
@@ -45,13 +45,13 @@
 	</div>
         {{#ionContent}}
        
-        {{#ionList}}
+        <div class="list" id="listiOS">
             {{#each deneme}}
                 
                 <div id="{{random}}" class="roomiOS">
                     <i class="icon ion-minus-circled assertive deleteIcons" style="display:none; font-size:1.75em; position:absolute; margin-top: 6%; left:10px" id="{{random}}"></i>
                         <a class="item item-avatar items" >
-                            <img src="messageBackground5.jpg">
+                            <img src="messageBackground5.jpg" class="profileImg" id="{{random}}">
                             <h2>{{profile.name}}</h2>
                             <p>Back off, man. I'm a scientist.</p>
                             
@@ -61,7 +61,7 @@
                  
                 
             {{/each}}
-        {{/ionList}}      
+        </div>      
         {{/ionContent}}
         
         {{#ionNavView}}
