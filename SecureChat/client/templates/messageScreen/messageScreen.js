@@ -7,6 +7,7 @@ if(Meteor.isCordova){
     var pictureSource;
     var messages = [];
     Session.setDefault('messagesCounter', 0);/*secilen mesaj sayisini reaktif olarak bildirmek icin */
+    var sendButtonControl;
     
     Template.messageScreen.helpers({
         img : function(){
@@ -27,6 +28,11 @@ if(Meteor.isCordova){
     })
     
     Template.messageScreen.rendered = function(){ 
+        
+        //$("#message").css("height", "100%");
+        
+        sendButtonControl = document.getElementById('message');//Textareayi degiskene atama
+        
         
         pictureSource = navigator.camera.PictureSourceType;//cordova photo kullanabilmek icin
         destinationType = navigator.camera.DestinationType;//cordova photo kullanabilmek icin
@@ -78,6 +84,7 @@ if(Meteor.isCordova){
                     localStorage.setItem('full', 'false');
                 }
             }
+            alert(document.getElementById('message').height());
            
         }
         
@@ -110,9 +117,9 @@ if(Meteor.isCordova){
     });
     
     window.addEventListener('native.keyboardhide', function(event){//klavye kapandiginda eger textarea da birsey yoksa height oranlarini dusur
-        if(document.getElementById('message').value == ""){
+        if(sendButtonControl.value == ""){
             $('#tab').css("height", '50px');   
-            $('#message').css("height", '35px');
+            //$('#message').css("height", '35px');
             
         }
         
@@ -121,12 +128,11 @@ if(Meteor.isCordova){
             
         }
                   
-        //keyboardHeight = event.keyboardHeight;
         
     });
     
     Template.messageScreen.events({
-        'swiperight .chatAndroid ' : function(e){//ekranda saga kaydirdigin zaman geri gitme (Android)
+        /*'swiperight .chatAndroid ' : function(e){//ekranda saga kaydirdigin zaman geri gitme (Android)
            cordova.plugins.Keyboard.close();
            window.history.back();    
         },
@@ -134,15 +140,15 @@ if(Meteor.isCordova){
         'swiperight .chat' : function(e){//ekranda saga kaydirdigin zaman geri gitme (iOS)
             cordova.plugins.Keyboard.close();
             window.history.back();
-        },
+        },*/
         
         'keydown #message' : function(e){
             if(e.keyCode == 13){//eger yazi yazilirken enter basilirsa
-                if(($(window).height() / 2) <= $('#tab').height()){//eger tabin(textareanin oldugu kisim) height degeri ekranin toplam boyutunun yarisindan buyuk veya esit olursa 
+                if(($(window).height() / 2) <= $('#message').height()){//eger tabin(textareanin oldugu kisim) height degeri ekranin toplam boyutunun yarisindan buyuk veya esit olursa 
                     return;
                 }
                 else{
-                    $('#tab').animate({height : '+=15px'}, 'fast');//eger olmaz ise her entera basildigi zaman tab ve mesaj kisminin heightini 15px arttir
+                    $('#message').animate({height : '+=15px'}, 'fast');//eger olmaz ise her entera basildigi zaman tab ve mesaj kisminin heightini 15px arttir
                     $('#message').animate({height : '+=15px'}, 'fast');
                     $('insideAndroid').animate({height: '-=20px'}, 'fast');
                     $('insideAndroid').css('overflow', 'hidden');
@@ -157,7 +163,7 @@ if(Meteor.isCordova){
         },
         
         'keyup #message' : function(){
-            if(document.getElementById('message').value !== ""){// eger textareada herhangi bir deger var ise send butonunu enable yap
+            if(sendButtonControl.value !== ""){// eger textareada herhangi bir deger var ise send butonunu enable yap
                 $('#sendAndroid').attr('disabled', false);
                 $('#sendiOS').attr('disabled', false);
             } 
@@ -170,7 +176,7 @@ if(Meteor.isCordova){
         },
         
         'click #message' : function(){
-            if(document.getElementById('message').value !== ""){//eger textarea ya tiklandigi zaman textarea bos degil ise send butonu aktif hale getir
+            if(sendButtonControl.value !== "" || sendButtonControl.value !== " "){//eger textarea ya tiklandigi zaman textarea bos degil ise send butonu aktif hale getir
                 $('#sendAndroid').attr('disabled', false);
                 $('#sendiOS').attr('disabled', false);
             } 
@@ -349,9 +355,8 @@ if(Meteor.isCordova){
        
             /* Android icin gonder butonunda yapilacak islemler */
         "touchstart #sendAndroid" : function(e){
-            $('div.insideAndroid').css('height', '100%');/*Klavye acildigi zaman 93% ye kucultulen divin boyutunu yukselt */
-            $('#tab').css("height", '50px');  /* her entera basildigi zaman tabin heighti yukseltildigi icin butona basildigi zaman tekrar eski haline getir */ 
-            $('#message').css("height", '35px'); /* her entera basildigi zaman textareanin heighti yukseltildigi icin butona basildigi zaman tekrar eski haline getir */
+            /* her entera basildigi zaman tabin heighti yukseltildigi icin butona basildigi zaman tekrar eski haline getir */ 
+            $('#message').css("height", '90%'); /* her entera basildigi zaman textareanin heighti yukseltildigi icin butona basildigi zaman tekrar eski haline getir */
             
             var insideAndroid = $("div.insideAndroid");
             var message = document.getElementById("message").value;
@@ -361,10 +366,12 @@ if(Meteor.isCordova){
             document.getElementById("message").value=""; /* Textareanin icini bosalt */
             /* Android icin her send e basildigi zaman scrollu en alta kaydirma */
             insideAndroid.css('overflow', 'hidden');
-            insideAndroid.scrollTop(insideAndroid[0].scrollHeight);
+            insideAndroid.scrollTop((insideAndroid[0].scrollHeight) + 5) ;
             insideAndroid.css('overflow', 'scroll');
             /* Gondere basildigi zaman bos mesaj yollanamamasi icin send butonunu disabled yap */
             $('#sendAndroid').attr('disabled', true);
+            $('#message').focus();
+            cordova.plugins.Keyboard.show();
             
         },
         
@@ -398,7 +405,7 @@ if(Meteor.isCordova){
         "click #back" : function(e){
             e.preventDefault()
             cordova.plugins.Keyboard.close();
-            window.history.back();
+            Router.go('/profile');
         },
         
         /*"taphold .fromMe" : function(e){

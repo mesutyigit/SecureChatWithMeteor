@@ -1,17 +1,17 @@
 <template name ="contacts">
     {{#contentFor "headerTitle"}}
-    <h1 class="title">Contacts</h1>
-    <button class="button button-clear" data-ion-modal="newPerson"><i class="icon ion-person-add dark"></i></button>
+    <h1 class="title bar-titleColorAndroid">Contacts</h1>
+    <button class="button button-clear" data-ion-modal="newPerson"><i class="icon ion-person-add light"></i></button>
     {{/contentFor}}
 
     {{#ionBody}}
         {{#ionNavView}}
             {{#ionContent}}
-            {{#ionList}}
+                {{#ionList class="forSwipe"}}
                     {{#each deneme}}
                         {{#ionItem}}
                             {{#linkTo route='message.Screen'}}
-                                <button class="button button-large button-clear pp"><h3>{{profile.name}}</h3></button><!-- pp classi her tiklamada streamle bilgi yollayabilmek icin -->
+                                <button class="button button-large button-clear pp"><h3>{{profile.name}}</h3></button><!--pp classi her tiklamada streamle bilgi yollayabilmek icin -->
                             {{/linkTo}}
                         {{/ionItem}}
                     {{/each}}

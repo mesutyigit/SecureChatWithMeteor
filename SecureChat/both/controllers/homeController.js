@@ -1,4 +1,6 @@
 HomeController = RouteController.extend({
+    fastRender : true,
+    
     onBeforeAction : function(){
         if(isFirstTime()){
             Cookie.set('getStarted', 1, {
@@ -15,9 +17,10 @@ HomeController = RouteController.extend({
         
     },
     
+    
+    
     action : function(){
-        if(this.ready())
-            this.render();
+        this.render();
     }
     
 });

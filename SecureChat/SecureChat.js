@@ -1,5 +1,10 @@
 if (Meteor.isCordova) {
-	
+	Template.home.events({
+		'click .goSignup' : function(e){
+			e.preventDefault();
+			Router.go('/signup');
+		}
+	})
 }
 
 if (Meteor.isServer) {

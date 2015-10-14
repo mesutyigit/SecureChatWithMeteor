@@ -1,23 +1,26 @@
 <template name="chatSettings">
-	<div class="bar bar-header bar-stable">
+	<div class="bar bar-header bar-colorAndroidTwo">
 		<button class="buttons button button-clear back-button pull-left button-entering button-active" style="color:#03A9F4;" id="back">
-			<i class="icon ion-ios-arrow-back"></i>
-			Back
+			<i class="icon ion-ios-arrow-back bar-titleColorAndroid"></i>
+			<span class="bar-titleColorAndroid">Back</span>
 		</button>
-		<h1 class="title">Chat Settings</h1>
+		<h1 class="title bar-titleColorAndroid">Chat Settings</h1>
 	</div>
+	{{#ionNavView}}
+      {{> profileTab}}
+      {{/ionNavView}}
 	{{#ionBody}}
 	<div id="list">
-    {{#ionContent}}
+    {{#ionContent class="contentBackground"}}
     <div class="list">
 		
-	<a class="item item-icon-left item-icon-right" href="/settings/chat/backgroundSettings">
+	<a class="item item-icon-left item-icon-right listBackground" href="/settings/chat/backgroundSettings">
     	<i class="icon ion-images background"></i>
     	Background
 		<i class="icon ion-ios-arrow-forward"></i>
   	</a>
 	  
-	<a class="item item-icon-left item-icon-right" href="/fontSize">
+	<a class="item item-icon-left item-icon-right listBackground" href="/fontSize">
     	<i class="icon ion-edit font-size"></i>
     	Font-Size
 		<i class="icon ion-ios-arrow-forward"></i>
@@ -25,9 +28,7 @@
 	</div>
 	  {{/ionContent}}
 	</div>
-	  {{#ionNavView}}
-      {{> profileTab}}
-      {{/ionNavView}}
+	  
 	
 	  {{/ionBody}}
 </template>

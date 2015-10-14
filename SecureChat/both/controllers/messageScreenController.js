@@ -1,4 +1,6 @@
 MessageScreenController = RouteController.extend({
+    fastRender : true,
+    
     onBeforeAction : function(){
         list = [];
         prime = 13;

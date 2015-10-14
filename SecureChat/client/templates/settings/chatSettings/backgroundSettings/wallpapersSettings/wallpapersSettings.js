@@ -12,6 +12,7 @@ if(Meteor.isCordova){
 			window.history.back();
 		},
 		
+		
 		'touchstart .aa' : function(e){
 			var picture = e.currentTarget;
 			
@@ -34,7 +35,7 @@ if(Meteor.isCordova){
 					Router.go('/wallpaperTry');	
 				}
 			
-			}, 350);
+			}, 300);
 			
 		},
 		

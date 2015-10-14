@@ -3,6 +3,7 @@
 /*Friends = new Ground.Collection(null);
 
 Contacts = new Ground.Collection(null);*/
+
 Background = new Ground.Collection(null);
 
 Tempo = new Meteor.Collection(null);

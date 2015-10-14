@@ -1,14 +1,14 @@
 <template name="wallpapersSettings">
-	<div class="bar bar-header bar-stable">
+	<div class="bar bar-header bar-colorAndroidTwo">
 		<button class="buttons button button-clear back-button pull-left button-entering button-active" style="color:#03A9F4;" id="back">
-			<i class="icon ion-ios-arrow-back"></i>
-			Back
+			<i class="icon ion-ios-arrow-back bar-titleColorAndroid"></i>
+			<span class="bar-titleColorAndroid">Back</span>
 		</button>
-        <h1 class="title">Wallpapers</h1>
+        <h1 class="title bar-titleColorAndroid">Wallpapers</h1>
 	</div>
 	{{#ionBody}}
 	
-    {{#ionContent}}
+    {{#ionContent class="contentBackground"}}
     <div id="forSwipe">
     <div class="row">
         <div class="col col-25"><img class="aa" id="pic" src="/messageBackground.jpg"></div>

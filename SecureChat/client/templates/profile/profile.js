@@ -20,6 +20,8 @@ if(Meteor.isCordova){
 	
 	
 	Template.profile.helpers({
+		
+		
 		random : function(){
 			return Random.id();
 		},
@@ -31,7 +33,13 @@ if(Meteor.isCordova){
 	
 	
 	Template.profile.events({
+		"swiperight .list" : function(){
+			Router.go('/contacts');
+		},
 		
+		"swipeleft .list" : function(){
+			Router.go('/settings');	
+		},
 		"swipeleft .roomiOS" : function(e){
 			e.preventDefault();
 			var chat = e.currentTarget;

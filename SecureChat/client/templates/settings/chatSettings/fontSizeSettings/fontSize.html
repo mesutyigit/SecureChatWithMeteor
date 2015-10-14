@@ -1,16 +1,16 @@
 <template name="fontSize">
-	<div class="bar bar-header bar-stable" style="position:fixed">
+	<div class="bar bar-header bar-colorAndroidTwo" style="position:fixed">
 		<button class="buttons button button-clear back-button pull-left button-entering button-active" style="color:#03A9F4;" id="back">
-			<i class="icon ion-ios-arrow-back"></i>
-			Back
+			<i class="icon ion-ios-arrow-back bar-titleColorAndroid"></i>
+			<span class="bar-titleColorAndroid">Back</span>
 		</button>
-		<h1 class="title">Fontsize Preview</h1>
+		<h1 class="title bar-titleColorAndroid">Fontsize Preview</h1>
 	</div>
 	
 	
 	<img src="{{image}}" style="height: {{height}}px; width: 100%; position:fixed; z-index : -1;">
     {{#ionContent}}
-    <div class="bubble me {{font}}">
+    <div class="bubble me {{font}} ">
 		Lorem ipsum dolor sit amet,consectetur adipiscing elit
     </div>
     
@@ -23,7 +23,7 @@
 	<div class="tabs" style="position:fixed">
 		 	<label class="item-input-wrapper item-select ">
 				 <div class="input-label">
-			Font Size
+			<span>Font Size</span>
 		</div>
 			<select id="sa">
 				<option {{selectLarge}}>Large</option>

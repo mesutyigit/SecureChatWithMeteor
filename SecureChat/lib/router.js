@@ -1,42 +1,48 @@
 Router.route('/', {
-             template : 'home',
-             name : 'home'
-             });
-
-Router.route('/signup', {
-             layoutTemplate : 'signupLayout',
-             template : 'signup',
-             name : 'signUp'
+    template : 'home',
+    name : 'home'
 });
 
+Router.route('/signup', {
+    layoutTemplate : 'signupLayout',
+    template : 'signup',
+    name : 'signUp'
+});
+
+Router.route('/profileSetup', {
+    layoutTemplate : 'profileLayout',
+    template : 'profileSetup',
+    name : 'profileSetup'
+})
+
 Router.route('/contacts', {
-             layoutTemplate : 'contactsLayout',
-             template : 'contacts',
-             name : 'contacts'
+    layoutTemplate : 'contactsLayout',
+    template : 'contacts',
+    name : 'contacts'
 });
 
 Router.route('/profile', {
-             layoutTemplate : 'profileLayout',
-             template : 'profile',
-             name : 'profile'
+    layoutTemplate : 'profileLayout',
+    template : 'profile',
+    name : 'profile'
 });
 
 Router.route('/settings', {
-             layoutTemplate : 'contactsLayout',
-             template : 'settings',
-             name : 'settings'
+    layoutTemplate : 'contactsLayout',
+    template : 'settings',
+    name : 'settings'
 });
 
 /*Router.route('/profile/:friendId' ,{
-             layoutTemplate : 'messageScreenLayout',
-             template : 'messageScreen',
-             name : 'message.Screen'
+    layoutTemplate : 'messageScreenLayout',
+    template : 'messageScreen',
+    name : 'message.Screen'
 });*/
 
 Router.route('/profile/:_id' ,{
-             layoutTemplate : 'messageScreenLayout',
-             template : 'messageScreen',
-             name : 'message.Screen'
+    layoutTemplate : 'messageScreenLayout',
+    template : 'messageScreen',
+    name : 'message.Screen'
 });
 
 Router.route('/settings/profile',{

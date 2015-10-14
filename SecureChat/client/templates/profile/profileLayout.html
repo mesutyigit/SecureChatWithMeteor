@@ -1,5 +1,5 @@
 <template name="profileLayout">
-	
+	{{#if isAndroid}}
 	{{#ionBody}}
 		{{> ionNavBar class="bar-stable"}}
 		
@@ -8,7 +8,15 @@
 		{{/ionNavView}}
 		
 	{{/ionBody}}
-	
-	
+	{{else}}
+	{{#ionBody}}
+		{{> ionNavBar class="bar-stable"}}
+		
+		{{#ionNavView}}
+			{{> yield}}
+		{{/ionNavView}}
+		
+	{{/ionBody}}
+	{{/if}}
 
 </template>
