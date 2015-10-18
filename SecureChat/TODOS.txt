@@ -1,0 +1,5 @@
+* Multiple Image Picker Eklenecek : https://github.com/wymsee/cordova-imagePicker
+
+* Video Konferans Arastirilacak
+
+* Kullanici Profil Sayfa Tasarimi Yapilacak + Profil Resmi Dusunulecek

@@ -6,12 +6,3 @@ isFirstTime = function(){
     
     return false;
 };
-
-isOpened = function(){
-    var result = Cookie.get('getOpened');
-    
-    if(result === null || result == "" || result == undefined)
-        return false;
-        
-    return true;
-}

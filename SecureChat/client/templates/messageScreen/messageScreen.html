@@ -12,17 +12,17 @@
     <img src="{{img}}" style="height: {{height}}px; width: 100%; position:fixed; z-index : -1;">
     {{#ionContent}}
     
-    <div class="chatAndroid" id="chatAndroid">
+    <div class="chatAndroid">
         <div class="insideAndroid"></div>
     </div>
     {{/ionContent}}
     
-    <div class="tabs" contenteditable="true" id="tab" style="background:none;"> <!-- background:none transparent yapabilmek icin-->
+    <div class="tabs" id="tab" style="background:none;"> <!-- background:none transparent yapabilmek icin-->
         <button class="button button-fab bar-colorAndroidTwo icon ion-paperclip customAttach" id="attachment" style="bottom:17%;"></button>
         
-        <textarea id="message" class="textAndroid" placeholder="Type A Message..." style="height:100%; bottom:10%; "></textarea>
+        <textarea id="message" class="textAndroid" placeholder=" Type a Message..." style="height:100%; bottom:10%; "></textarea>
         
-        <button class="button button-fab bar-colorAndroidTwo" id="sendAndroid" style="bottom:17%;"><i class="icon ion-android-send customSend"></i></button>
+        <button class="button button-fab icon ion-android-send customSend bar-colorAndroidTwo" id="sendAndroid" style="bottom:17%;"></button>
         
     </div>
     
@@ -44,10 +44,8 @@
     <img src="{{img}}" style="height: {{height}}px; width: 100%; position:fixed; z-index : -1;">
     {{#ionContent}}
     <div class="chat" id="chatiOS">
-        
             <div class="inside" id="{{random}}"></div>
         
-       
     </div>
     {{/ionContent}}
     
@@ -55,7 +53,7 @@
         <button class="button button-clear icon ion-paperclip customAttach" id="attachment">
         </button>
            
-        <textarea id="message" placeholder="Type A Message"></textarea>
+        <textarea id="message" placeholder=" Type a Message..."> </textarea>
         
          <button class="button button-clear icon ion-ios-arrow-forward customSend" id="sendiOS" disabled>
          </button>

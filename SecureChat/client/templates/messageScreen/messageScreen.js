@@ -29,7 +29,7 @@ if(Meteor.isCordova){
     
     Template.messageScreen.rendered = function(){ 
         
-        //$("#message").css("height", "100%");
+        $("#message").css("height", "93%");
         
         sendButtonControl = document.getElementById('message');//Textareayi degiskene atama
         
@@ -89,6 +89,7 @@ if(Meteor.isCordova){
         }
         
         if(Platform.isAndroid()){//baslangicta klavye acilmasi icin
+            $('#sendAndroid').attr('disabled', true);
             cordova.plugins.Keyboard.show();
             document.getElementById('message').focus();
         }
@@ -103,7 +104,8 @@ if(Meteor.isCordova){
     window.addEventListener('native.keyboardshow', function(event){//klavye acildigi zaman android height dusur ve en son mesaja scroll yap
         if(Platform.isAndroid()){
             $('div.insideAndroid').css('height', '93%');
-            $('div.bubble:last').get(0).scrollIntoView();
+            $('div.bubble:last').get(0).scrollIntoView();   
+            
         }
         
         else{
@@ -117,30 +119,21 @@ if(Meteor.isCordova){
     });
     
     window.addEventListener('native.keyboardhide', function(event){//klavye kapandiginda eger textarea da birsey yoksa height oranlarini dusur
-        if(sendButtonControl.value == ""){
-            $('#tab').css("height", '50px');   
-            //$('#message').css("height", '35px');
-            
-        }
-        
         if(Platform.isAndroid()){
             $('div.insideAndroid').css('height', '100%'); //android icin kucultulen div buyut
             
         }
-                  
         
+        if(sendButtonControl.value == ""){
+            $('#tab').css("height", '50px');   
+            //$('#message').css("height", '35px');
+                
+        }
+        
+           
     });
     
     Template.messageScreen.events({
-        /*'swiperight .chatAndroid ' : function(e){//ekranda saga kaydirdigin zaman geri gitme (Android)
-           cordova.plugins.Keyboard.close();
-           window.history.back();    
-        },
-        
-        'swiperight .chat' : function(e){//ekranda saga kaydirdigin zaman geri gitme (iOS)
-            cordova.plugins.Keyboard.close();
-            window.history.back();
-        },*/
         
         'keydown #message' : function(e){
             if(e.keyCode == 13){//eger yazi yazilirken enter basilirsa
@@ -163,7 +156,8 @@ if(Meteor.isCordova){
         },
         
         'keyup #message' : function(){
-            if(sendButtonControl.value !== ""){// eger textareada herhangi bir deger var ise send butonunu enable yap
+            
+            if(sendButtonControl.value !== null){// eger textareada herhangi bir deger var ise send butonunu enable yap
                 $('#sendAndroid').attr('disabled', false);
                 $('#sendiOS').attr('disabled', false);
             } 
@@ -176,13 +170,14 @@ if(Meteor.isCordova){
         },
         
         'click #message' : function(){
-            if(sendButtonControl.value !== "" || sendButtonControl.value !== " "){//eger textarea ya tiklandigi zaman textarea bos degil ise send butonu aktif hale getir
-                $('#sendAndroid').attr('disabled', false);
-                $('#sendiOS').attr('disabled', false);
-            } 
-            else{//deger yok ise disable yap
+            
+            if(sendButtonControl.value == ""){//eger textarea ya tiklandigi zaman textarea bos degil ise send butonu aktif hale getir
                 $('#sendAndroid').attr('disabled', true);
                 $('#sendiOS').attr('disabled', true);
+            } 
+            else{//deger yok ise disable yap
+                $('#sendAndroid').attr('disabled', false);
+                $('#sendiOS').attr('disabled', false);
             }
         },
         
@@ -192,7 +187,8 @@ if(Meteor.isCordova){
         },*/
         
         'click #attachment' : function(){
-            /* video cekim duzenlenecek var optionsCamera = {
+            cordova.plugins.Keyboard.close();
+            /* video cekim duzenlenecek var option  sCamera = {
                 width : '100',
                 height : '100',
                 quality : 100
@@ -209,12 +205,12 @@ if(Meteor.isCordova){
             IonActionSheet.show({/* attachment butonuna basildigi zaman olusacak ActionSheet menusu*/
                 
                 buttons: [
-                    { text: '<i class="icon ion-camera">&nbsp;Take Photo</i>' },
-                    { text: '<i class="icon ion-videocamera">&nbsp;Take Video</i> ' },
-                    { text: '<i class="icon ion-images">&nbsp;Photo/Video Library</i> ' }
+                    { text: '<i class="icon ion-camera colorAndroidIconsTwo">&nbsp;Take Photo</i>' },
+                    { text: '<i class="icon ion-videocamera colorAndroidIconsTwo">&nbsp;Take Video</i> ' },
+                    { text: '<i class="icon ion-images colorAndroidIconsTwo">&nbsp;Photo/Video Library</i> ' }
                     
                 ],
-                cancelText: '<b>Cancel</b>',
+                cancelText: '<b class="colorAndroidIconsThree">Cancel</b>',
                 cancel: function() {
                     IonActionSheet.close();
                 },
@@ -356,32 +352,32 @@ if(Meteor.isCordova){
             /* Android icin gonder butonunda yapilacak islemler */
         "touchstart #sendAndroid" : function(e){
             /* her entera basildigi zaman tabin heighti yukseltildigi icin butona basildigi zaman tekrar eski haline getir */ 
-            $('#message').css("height", '90%'); /* her entera basildigi zaman textareanin heighti yukseltildigi icin butona basildigi zaman tekrar eski haline getir */
+            $('#message').css("height", '93%'); /* her entera basildigi zaman textareanin heighti yukseltildigi icin butona basildigi zaman tekrar eski haline getir */
             
             var insideAndroid = $("div.insideAndroid");
             var message = document.getElementById("message").value;
-            message = message.replace(/\n/g, '<br>');//entera basildigi zaman ekrana bosluk koymasi icin /g butun elemanlari kontrol ediyor
+            message = message.replace(/\n/g, '<br>'); // entera basildigi zaman ekrana bosluk koymasi icin /g butun elemanlari kontrol ediyor
             insideAndroid.append('<div class="bubble ' + localStorage.getItem('font') + ' me fromMe " id='+ Random.id() +'>'+ message + '</div>');/* Userin belirledigi font boyutu ile ekranda mesaji goster */
             insideAndroid.append('<div class="bubble ' + localStorage.getItem('font') + ' you fromYou" id =' + Random.id() +  '>'+ message + '</div>');
-            document.getElementById("message").value=""; /* Textareanin icini bosalt */
+            document.getElementById("message").value = ""; // Textareanin icini bosalt
             /* Android icin her send e basildigi zaman scrollu en alta kaydirma */
             insideAndroid.css('overflow', 'hidden');
-            insideAndroid.scrollTop((insideAndroid[0].scrollHeight) + 5) ;
+            insideAndroid.scrollTop((insideAndroid[0].scrollHeight)) ;
             insideAndroid.css('overflow', 'scroll');
-            /* Gondere basildigi zaman bos mesaj yollanamamasi icin send butonunu disabled yap */
-            $('#sendAndroid').attr('disabled', true);
-            $('#message').focus();
+            /* */
+            $('#sendAndroid').attr('disabled', true); // Gondere basildigi zaman bos mesaj yollanamamasi icin send butonunu disabled yap
             cordova.plugins.Keyboard.show();
+            $('input[type="textarea"]').focus();
             
         },
         
         "touchend #sendAndroid" : function(){
-            /* Send butonundan el kalktigi zaman herhangi bir sey gerceklestirme */
-            return;
+            return true; // Send butonundan el kalktigi zaman herhangi bir sey gerceklestirme
         },
         
-        "touchstart #sendiOS": function()
+        "touchstart #sendiOS": function(e)
         {
+            
             $('#tabMessage').css("height", '50px'); /* her entera basildigi zaman tabMessagein heighti yukseltildigi icin butona basildigi zaman tekrar eski haline getir */  
             $('#message').css("height", '35px'); /* her entera basildigi zaman textareanin heighti yukseltildigi icin butona basildigi zaman tekrar eski haline getir */ 
             var insideiOS = $("div.inside");
@@ -399,7 +395,7 @@ if(Meteor.isCordova){
         
         "touchend #sendiOS" : function(){
             //document.getElementById('message').focus();
-            return;
+            return true;
         },
         
         "click #back" : function(e){

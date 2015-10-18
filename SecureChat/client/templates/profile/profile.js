@@ -1,5 +1,6 @@
+/* PrivacyScreen plugini eklendi. Bu plugin sayesinde acik programlar gosterilirken programin goruntusu gozukmemekte*/
+
 if(Meteor.isCordova){
-	
 	var chats = [];
 	var parentsAndroid = [];
 	

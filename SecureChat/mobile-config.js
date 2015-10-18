@@ -18,5 +18,20 @@ App.icons({
     'android_xhdpi' : 'public/icons/96x96.png'
 });
 
+App.launchScreens({
+    'android_ldpi_portrait' : 'public/splash/200x320.jpg',
+    'android_ldpi_landscape' : 'public/splash/320x200.jpg',
+    'android_mdpi_portrait' : 'public/splash/320x480.jpg',
+    'android_mdpi_landscape' : 'public/splash/480x320.jpg',
+    'android_hdpi_portrait' : 'public/splash/480x800.jpg',
+    'android_hdpi_landscape' : 'public/splash/800x480.jpg',
+    'android_xhdpi_portrait' : 'public/splash/720x1280.jpg',
+    'android_xhdpi_landscape' : 'public/splash/1280x720.jpg'
+    
+})
+
+App.setPreference("StatusBarOverlaysWebView", false);
+App.setPreference("StatusBarBackgroundColor", "#00695C");
+
 
 

@@ -69,6 +69,11 @@ areValidPassword = function(value, confirm){
 }
 
 if(Meteor.isCordova){
+    Template.signup.rendered = function(){
+        if(Platform.isAndroid()){
+            StatusBar.backgroundColorByHexString("#00695C");
+        }
+    }
     Template.signup.events({
         'click #sign' : function(e,tmpl){
             e.preventDefault();

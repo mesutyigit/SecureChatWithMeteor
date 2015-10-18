@@ -1,15 +1,5 @@
-/* global Template */
-/* global Session */
-/* global owner */
-/* global keyHelper */
-/* global random */
-/* global num */
-/* global prime */
-/* global list */
-/* global Meteor */
-/* global sendActKey */
-/* global sendKey */
 if(Meteor.isCordova){
+    
     
     Template.contacts.helpers({
         /*lists : function(){
@@ -22,8 +12,10 @@ if(Meteor.isCordova){
     });
     
     Template.contacts.events({
-        "swipeleft" : function(){
+        "swipeleft .forSwipe" : function(e){
+            e.preventDefault();
             Router.go('/profile');
+            
         }
     })
      

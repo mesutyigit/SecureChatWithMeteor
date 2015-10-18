@@ -1,15 +1,4 @@
-if (Meteor.isCordova) {
-	Template.home.events({
-		'click .goSignup' : function(e){
-			e.preventDefault();
-			Router.go('/signup');
-		}
-	})
-}
-
-if (Meteor.isServer) {
-	
-	keyTaked.permissions.write(function(eventName){
+keyTaked.permissions.write(function(eventName){
     	return eventName == 'key';
 	});
 	
@@ -36,4 +25,3 @@ if (Meteor.isServer) {
     		keyGen.emit(owner, message);
 		});
 	});
-}

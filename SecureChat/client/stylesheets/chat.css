@@ -3,6 +3,7 @@
   height : 93%;
   overflow : scroll;
   padding-bottom : 3%;
+  -webkit-overflow-scrolling: touch;
   
 }
 
@@ -11,6 +12,7 @@
   height : 93%;
   overflow : scroll;
   padding-bottom : 3%;
+  -webkit-overflow-scrolling: touch;
    
 }
 
@@ -513,15 +515,21 @@ textarea#message
   color : white;
 }
 
-.customSend,
+.customSend{
+  -webkit-user-select: none;  
+}
 
 .customSend:before{
   font-size : 35px !important;
   color: white;
-  text-align: center;
+  padding-left: 3%;
 }
 
 .bar{
   background-size : 100% 0px;
 }
 
+.forSwipe {
+  -webkit-overflow-scrolling: touch;
+  overflow : scroll;
+}

@@ -1,3 +1,5 @@
 com.ionic.keyboard@https://github.com/driftyco/ionic-plugin-keyboard/tarball/66926f5e25fcd71b65799adaf12fa0b2df65ce78
 com.verso.cordova.clipboard@https://github.com/VersoSolutions/CordovaClipboard/tarball/03fe48b62411cbff22229ca13cc3ac8b282f7945
+cordova-plugin-dialogs@https://github.com/apache/cordova-plugin-dialogs/tarball/fb994515f0b8ff054482ebd5740964204c17c3b3
 org.apache.cordova.contacts@0.2.16
+org.devgeeks.privacyscreen@https://github.com/Telerik-Verified-Plugins/PrivacyScreen/tarball/11db0449a74d64910bed929d55c3a5558ffb3f2f
